@@ -288,22 +288,35 @@
   }
 
   /* -----------------------------------------
-     7. NEWS MODAL
+     7. NEWS — Load from news.json + Modal
      ----------------------------------------- */
-  const NEWS_DATA = [
-    {
-      id: 'news-0',
-      date: '2026.04.19',
-      title: 'あらき ライブツアー2026「LIVE ARK ODYSSEY」開催決定！',
-      body: '<p>あらき のライブツアー2026「LIVE ARK ODYSSEY」の開催が決定しました！</p><p>全国15公演のライブハウスツアーを開催！</p><p>詳細は順次発表いたします。</p>'
-    },
-    {
-      id: 'news-1',
-      date: '2026.04.19',
-      title: 'FC「あらき組」& OFFICIAL 最速先行受付開始！',
-      body: '<p>FC「あらき組」会員限定の最速先行受付を開始いたします。</p><p>受付期間等の詳細はTICKETセクションをご確認ください。</p>'
+  let newsData = [];
+
+  async function loadNews() {
+    const list = document.getElementById('newsList');
+    if (!list) return;
+
+    try {
+      const res = await fetch('data/news.json');
+      if (!res.ok) throw new Error('Failed to load news.json');
+      newsData = await res.json();
+
+      list.innerHTML = '';
+      newsData.forEach(item => {
+        const li = document.createElement('li');
+        li.className = 'news__item';
+        li.dataset.modal = item.id;
+        li.innerHTML = `
+          <time class="news__date">${item.date}</time>
+          <span class="news__title">${item.title}</span>
+        `;
+        list.appendChild(li);
+      });
+    } catch (err) {
+      console.error('News load error:', err);
+      list.innerHTML = '<li style="color: var(--color-sub-text);">ニュースを読み込めませんでした。</li>';
     }
-  ];
+  }
 
   function initNewsModal() {
     const modal = document.getElementById('newsModal');
@@ -316,7 +329,7 @@
     const bodyEl = document.getElementById('modalBody');
 
     function open(newsId) {
-      const item = NEWS_DATA.find(n => n.id === newsId);
+      const item = newsData.find(n => n.id === newsId);
       if (!item) return;
       dateEl.textContent = item.date;
       titleEl.textContent = item.title;
@@ -332,8 +345,10 @@
       document.body.style.overflow = '';
     }
 
-    document.querySelectorAll('.news__item[data-modal]').forEach(item => {
-      item.addEventListener('click', () => open(item.dataset.modal));
+    // Event delegation — works with dynamically generated items
+    document.addEventListener('click', e => {
+      const item = e.target.closest('.news__item[data-modal]');
+      if (item) open(item.dataset.modal);
     });
 
     closeBtn.addEventListener('click', close);
@@ -888,6 +903,7 @@
 
     // Data
     await loadSchedule();
+    await loadNews();
 
     // Interactions
     initHamburger();

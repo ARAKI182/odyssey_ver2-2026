@@ -220,6 +220,18 @@ ul, ol {
   color: var(--color-text-hero);
 }
 
+/* Hero → section gradient fade */
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 180px;
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.75));
+  pointer-events: none;
+}
+
 .hero__inner {
   display: flex;
   flex-direction: column;
