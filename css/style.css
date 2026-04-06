@@ -272,7 +272,7 @@ ul, ol {
   font-size: clamp(3.5rem, 12vw, 6rem);
   font-weight: 900;
   line-height: 1;
-  color: var(--color-text-hero);
+  color: #e63946;
 }
 
 .countdown__unit {
@@ -708,8 +708,27 @@ ul, ol {
   font-family: var(--font-heading-en);
   font-size: clamp(2rem, 6vw, 3rem);
   font-weight: 900;
-  color: var(--color-accent);
   line-height: 1;
+  background: linear-gradient(
+    90deg,
+    var(--color-accent) 0%,
+    #f5e6a3 15%,
+    var(--color-accent) 30%,
+    #ffe8a0 45%,
+    var(--color-accent) 60%,
+    #f5e6a3 75%,
+    var(--color-accent) 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: sparkle-shimmer 3s ease-in-out infinite;
+}
+
+@keyframes sparkle-shimmer {
+  0% { background-position: 200% center; }
+  100% { background-position: -200% center; }
 }
 
 .ticket__price-tax {
