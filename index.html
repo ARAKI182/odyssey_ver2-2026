@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LIVE ARK ODYSSEY 2026 | あらき</title>
+  <meta name="description" content="あらき LIVE ARK ODYSSEY 2026 — 2026.8.10〜11.15 全国ツアー">
+  <meta property="og:title" content="LIVE ARK ODYSSEY 2026">
+  <meta property="og:description" content="あらき 全国ツアー 2026.8.10〜11.15">
+  <meta property="og:type" content="website">
+
+  <!-- Adobe Fonts (brother-1816 + Zen Kaku Gothic New) -->
+  <link rel="stylesheet" href="https://use.typekit.net/goo5wxr.css">
+
+  <!-- Google Fonts fallback -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="header" id="header">
+    <a href="#" class="header__logo" id="logoHome" aria-label="TOP">
+      <img src="img/logo-symbol.png" alt="ODYSSEY" class="header__logo-img">
+    </a>
+    <button class="header__hamburger" id="hamburger" aria-label="メニュー" aria-expanded="false">
+      <span class="hamburger__line"></span>
+      <span class="hamburger__line"></span>
+      <span class="hamburger__line"></span>
+    </button>
+  </header>
+
+  <nav class="nav-overlay" id="navOverlay" aria-hidden="true">
+    <ul class="nav-overlay__list">
+      <li><a href="#news" class="nav-overlay__link">NEWS</a></li>
+      <li><a href="#schedule" class="nav-overlay__link">SCHEDULE</a></li>
+      <li><a href="#ticket" class="nav-overlay__link">TICKET</a></li>
+      <li><a href="#goods" class="nav-overlay__link">GOODS</a></li>
+      <li><a href="#journal" class="nav-overlay__link">JOURNAL</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero" id="hero">
+    <div class="hero__inner">
+      <img src="img/logo-typo.png" alt="LIVE ARK ODYSSEY" class="hero__logo">
+      <p class="hero__date char-reveal">2026.8.10 — 11.15</p>
+      <div class="hero__countdown" id="countdown">
+        <span class="countdown__label">出発まで</span>
+        <span class="countdown__number char-reveal" id="countdownDays">---</span>
+        <span class="countdown__unit">DAYS</span>
+      </div>
+    </div>
+    <div class="hero__scroll-hint">
+      <span class="scroll-hint__text">Scroll</span>
+      <div class="scroll-hint__arrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="news">
+    <div class="section__inner">
+      <h2 class="section__heading reveal-heading">NEWS</h2>
+      <div class="news__scroll-box fade-item">
+        <ul class="news__list" id="newsList">
+          <li class="news__item" data-modal="news-0">
+            <time class="news__date">2026.04.19</time>
+            <span class="news__title">あらき ライブツアー2026「LIVE ARK ODYSSEY」開催決定！</span>
+          </li>
+          <li class="news__item" data-modal="news-1">
+            <time class="news__date">2026.04.19</time>
+            <span class="news__title">FC「あらき組」&amp;OFFICIAL 最速先行受付開始！</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="modal" id="newsModal" aria-hidden="true">
+    <div class="modal__backdrop"></div>
+    <div class="modal__inner" role="dialog" aria-modal="true">
+      <time class="modal__date" id="modalDate"></time>
+      <h3 class="modal__title" id="modalTitle"></h3>
+      <div class="modal__body" id="modalBody"></div>
+      <button class="modal__close-bottom" id="modalClose" aria-label="閉じる">×CLOSE</button>
+    </div>
+  </div>
+
+  <section class="section" id="schedule">
+    <div class="section__inner">
+      <h2 class="section__heading reveal-heading">SCHEDULE</h2>
+      <ul class="schedule__list stagger-list" id="scheduleList">
+        <!-- JS で動的生成 -->
+      </ul>
+    </div>
+  </section>
+
+  <div class="modal" id="scheduleModal" aria-hidden="true">
+    <div class="modal__backdrop"></div>
+    <div class="modal__inner modal__inner--schedule" role="dialog" aria-modal="true">
+      <div id="scheduleModalContent"></div>
+      <button class="modal__close-bottom" id="scheduleModalClose" aria-label="閉じる">×CLOSE</button>
+    </div>
+  </div>
+
+  <section class="section" id="ticket">
+    <div class="section__inner">
+      <h2 class="section__heading reveal-heading">TICKET</h2>
+
+      <div class="ticket__price fade-item">
+        <span class="ticket__price-label">ALL STANDING</span>
+        <span class="ticket__price-value">&yen;6,500</span>
+        <span class="ticket__price-tax">(tax in) +Drink</span>
+        <span class="ticket__price-note">未就学児入場不可 ※3歳以上有料</span>
+      </div>
+
+      <div class="accordion fade-item">
+        <button class="accordion__trigger" aria-expanded="false">
+          <span>チケットについて<small class="accordion__note">ご購入前に必ずご一読ください</small></span>
+          <span class="accordion__icon"></span>
+        </button>
+        <div class="accordion__content">
+          <div class="accordion__inner">
+
+            <h4 class="accordion__sub-heading">チケットお申し込みに関しての注意事項</h4>
+            <ul class="accordion__list">
+              <li>本公演は電子チケットのみの取り扱いとなります。</li>
+              <li>チケットご購入後のキャンセル/変更/払戻はできません。</li>
+              <li>チケット申込者および同行者の方は、イープラスの会員登録とe+アプリのインストールが必要です。</li>
+              <li>チケット先行受付のお申込み・支払・受取に関するお問い合わせ <a href="http://eplus.jp/qa/" target="_blank" rel="noopener" class="accordion__link">http://eplus.jp/qa/</a>（PC＆携帯）</li>
+              <li>営利目的での購入及び転売は禁止です。</li>
+              <li>来場困難な場合に備え、リセールを予定しております。詳細は改めてご案内いたします。</li>
+              <li>車椅子でご来場の場合は、チケット購入後、事前に各公演のお問合せ先までご連絡をお願いいたします。</li>
+            </ul>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion accordion--fc fade-item">
+        <button class="accordion__trigger accordion__trigger--fc" aria-expanded="false">
+          <span>FCあらき組 最速先行<small class="accordion__date-range">4/19(日)12:00〜4/27(月)23:59</small></span>
+          <span class="accordion__icon"></span>
+        </button>
+        <div class="accordion__content">
+          <div class="accordion__inner">
+            <dl class="ticket-schedule">
+              <dt>受付</dt><dd>4/19（日）12:00 〜 4/27（月）23:59</dd>
+              <dt>抽選結果</dt><dd>5/1（金）</dd>
+              <dt>入金期間</dt><dd>5/2（土）13:00 〜 5/5（火祝）21:00</dd>
+            </dl>
+            <a href="#" class="ticket-schedule__cta" aria-label="FCあらき組 最速先行に申し込む">申し込む</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion accordion--playguide fade-item">
+        <button class="accordion__trigger accordion__trigger--playguide" aria-expanded="false">
+          <span>プレイガイド最速先行<small class="accordion__date-range">4/19(日)12:00〜4/27(月)23:59</small></span>
+          <span class="accordion__icon"></span>
+        </button>
+        <div class="accordion__content">
+          <div class="accordion__inner">
+            <dl class="ticket-schedule">
+              <dt>受付</dt><dd>4/19（日）12:00 〜 4/27（月）23:59</dd>
+              <dt>抽選結果</dt><dd>5/1（金）</dd>
+              <dt>入金期間</dt><dd>5/2（土）13:00 〜 5/5（火祝）21:00</dd>
+            </dl>
+            <a href="#" class="ticket-schedule__cta" aria-label="プレイガイド最速先行に申し込む">申し込む</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section" id="goods">
+    <div class="section__inner">
+      <h2 class="section__heading reveal-heading">GOODS</h2>
+      <div class="goods__placeholder fade-item">
+        <p class="goods__coming-soon">COMING SOON</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="movie" style="display:none">
+    <div class="section__inner">
+      <h2 class="section__heading reveal-heading">MOVIE</h2>
+      <div class="carousel fade-item" id="movieCarousel">
+        <div class="carousel__track" id="movieTrack">
+          <div class="carousel__slide">
+            <div class="carousel__video-wrap">
+              <iframe src="https://www.youtube.com/embed/tbEe26Azk8U?si=AVbsHTBHINq1wKCB"
+                      title="Movie 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+            </div>
+          </div>
+        </div>
+        <button class="carousel__arrow carousel__arrow--prev" aria-label="前へ">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+        </button>
+        <button class="carousel__arrow carousel__arrow--next" aria-label="次へ">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 6 15 12 9 18"/>
+          </svg>
+        </button>
+        <div class="carousel__dots" id="movieDots"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="journal">
+    <div class="section__inner">
+      <h2 class="section__heading reveal-heading">JOURNAL</h2>
+      <div class="journal__sections fade-item" id="journalSections">
+        <!-- JS で動的生成 -->
+      </div>
+    </div>
+  </section>
+
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox__arrow lightbox__arrow--prev" aria-label="前へ">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <img class="lightbox__img" id="lightboxImg" src="" alt="">
+    <p class="lightbox__caption" id="lightboxCaption"></p>
+    <button class="lightbox__arrow lightbox__arrow--next" aria-label="次へ">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 6 15 12 9 18"/></svg>
+    </button>
+    <button class="lightbox__close-bottom" aria-label="閉じる">×CLOSE</button>
+  </div>
+
+  <footer class="footer" id="footer">
+    <div class="footer__inner">
+
+      <div class="accordion accordion--footer">
+        <button class="accordion__trigger" aria-expanded="false">
+          <span>公演に関する注意事項</span>
+          <span class="accordion__icon"></span>
+        </button>
+        <div class="accordion__content">
+          <div class="accordion__inner">
+
+            <h4 class="accordion__sub-heading">服装・持ち物について</h4>
+            <ul class="accordion__list">
+              <li>安全な服装・履物でご来場ください。</li>
+              <li>ヒールや厚底靴の着用は禁止です。</li>
+              <li>転倒・事故防止のためだけでなく、後方のお客様の視界を確保し、公平な環境を保つためのルールです。</li>
+              <li>厚底靴の着用は発覚次第、履き替えをお願いする場合があります。</li>
+              <li>鋭利なアクセサリー、長いチェーンやストラップは接触事故防止のため着用をお控えください。</li>
+              <li>極端に大きな帽子や装飾は後方のお客様の視界を遮るためご遠慮ください。</li>
+            </ul>
+
+            <h4 class="accordion__sub-heading">光り物の持ち込み制限について</h4>
+            <ul class="accordion__list">
+              <li>サイリウム、リングライトなどの光り物は合計2点まで持ち込み可能です。<br>例: サイリウム1本＋リングライト1個（合計2点）</li>
+              <li>極端に明るい光や点滅が激しいもの、過度に長いものはご遠慮ください。</li>
+            </ul>
+
+            <h4 class="accordion__sub-heading">撮影・録音・録画について</h4>
+            <ul class="accordion__list">
+              <li>公演中および待機時間のステージ・フロア内での撮影・録音・録画は禁止です。</li>
+              <li>会場の外観やロビーなど、ステージ・フロア外での撮影は問題ありません。</li>
+              <li>いかなる機器であっても、禁止エリアでの撮影・録音・録画を発見した場合はデータの消去を確認の上、ご退場いただきます。</li>
+              <li>SNS等への無断投稿も固くお断りいたします。</li>
+            </ul>
+
+            <h4 class="accordion__sub-heading">公演中の声出しについて</h4>
+            <ul class="accordion__list">
+              <li>歓声や歌唱は周囲のお客様の迷惑にならない範囲でお楽しみください。</li>
+              <li>他のお客様の鑑賞を妨げる過度な大声や、周囲とのトラブルにつながる行為はご遠慮ください。</li>
+            </ul>
+
+            <h4 class="accordion__sub-heading">会場でのマナーについて</h4>
+            <ul class="accordion__list">
+              <li>客席内では係員の指示に従ってください。</li>
+              <li>安全かつ円滑な公演運営のため、係員の指示に従わない場合はご退場いただく場合がございます。</li>
+              <li>アーティストの入り待ち・出待ちは禁止です。</li>
+              <li>近隣への迷惑防止、および安全確保のため、会場周辺での待機・張り込み行為は禁止となります。</li>
+            </ul>
+
+            <h4 class="accordion__sub-heading">プレゼント・フラワースタンドについて</h4>
+            <ul class="accordion__list">
+              <li>出演者へのプレゼントは受け取れません。本公演では、プレゼントの受け取りは辞退させていただきます。</li>
+              <li>（例外）お手紙は受け取り可能です。会場に設置する「お手紙回収BOX」にお入れください。直接の手渡しはご遠慮ください。</li>
+              <li>フラワースタンドをお送りいただく際は各公演のお問合せ先までご連絡ください。</li>
+            </ul>
+
+            <p class="accordion__text" style="margin-top: 20px;">ルールを守れない場合、入場・観覧をお断りすることがあります。<br>皆様が快適にライブを楽しめるよう、ご理解とご協力のほどよろしくお願いいたします。</p>
+
+            <p class="accordion__text" style="margin-top: 20px;">上記に合わせて <a href="https://araki-live.jp/torisetsu_2026/" target="_blank" rel="noopener" class="accordion__link">ライブトリセツ</a> もご覧ください。</p>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion accordion--footer">
+        <button class="accordion__trigger" aria-expanded="false">
+          <span>お問い合わせ</span>
+          <span class="accordion__icon"></span>
+        </button>
+        <div class="accordion__content">
+          <div class="accordion__inner accordion__inner--contact">
+            <iframe data-src="https://araki-live.jp/script/mailform/odyssey/" class="contact__iframe" title="お問い合わせフォーム" scrolling="no"></iframe>
+          </div>
+        </div>
+      </div>
+
+      <a href="https://araki-axiz.com" target="_blank" rel="noopener" class="footer__fc-link">
+        OFFICIAL FANCLUB
+      </a>
+      <div class="footer__sns">
+        <a href="https://www.instagram.com/az_araki_ig/" target="_blank" rel="noopener" aria-label="Instagram" class="footer__sns-link">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+        <a href="https://x.com/axiz_and_nico" target="_blank" rel="noopener" aria-label="X" class="footer__sns-link">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="https://lin.ee/OGNANVm" target="_blank" rel="noopener" aria-label="LINE" class="footer__sns-link">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+        </a>
+        <a href="https://www.youtube.com/c/AXIZchannel" target="_blank" rel="noopener" aria-label="YouTube" class="footer__sns-link">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12z"/></svg>
+        </a>
+      </div>
+      <p class="footer__copy">&copy; 2026 ARAKI / LIVE ARK PROJECT. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
