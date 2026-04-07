@@ -901,9 +901,8 @@
     initCountdown();
     initLogoHome();
 
-    // Data
-    await loadSchedule();
-    await loadNews();
+    // Data (parallel fetch)
+    await Promise.all([loadSchedule(), loadNews()]);
 
     // Interactions
     initHamburger();
