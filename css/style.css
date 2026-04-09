@@ -680,7 +680,7 @@ ul, ol {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  margin-top: 20px;
+  margin-top: 16px;
   padding: 10px 24px;
   border: 1px solid var(--color-accent);
   color: var(--color-accent);
@@ -703,6 +703,33 @@ ul, ol {
 }
 
 .schedule-detail__guests a {
+  color: var(--color-accent);
+}
+
+.schedule-detail__label {
+  display: block;
+  color: var(--color-accent);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
+}
+
+.schedule-detail__band {
+  margin-top: 16px;
+  font-size: 0.82rem;
+  line-height: 1.8;
+  color: var(--color-sub-text);
+}
+
+.schedule-detail__contact {
+  margin-top: 16px;
+  font-size: 0.78rem;
+  line-height: 1.6;
+  color: var(--color-sub-text);
+}
+
+.schedule-detail__contact a {
   color: var(--color-accent);
 }
 

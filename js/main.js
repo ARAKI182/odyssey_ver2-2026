@@ -144,6 +144,19 @@
         guestsHTML = '<p class="schedule-detail__guests" style="color: var(--color-accent);">ONE MAN LIVE</p>';
       }
 
+      let bandHTML = '';
+      if (show.band && show.band.length > 0) {
+        const members = show.band.map(m => `${m.part}.${m.name}`).join(' / ');
+        bandHTML = `<p class="schedule-detail__band"><span class="schedule-detail__label">BAND</span>${members}</p>`;
+      }
+
+      let contactHTML = '';
+      if (show.contact) {
+        const linked = show.contact
+          .replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
+        contactHTML = `<p class="schedule-detail__contact"><span class="schedule-detail__label">CONTACT</span>${linked}</p>`;
+      }
+
       let mapHTML = '';
       if (show.map_url) {
         mapHTML = `<a href="${show.map_url}" target="_blank" rel="noopener" class="schedule-detail__map-link">Google Map</a>`;
@@ -156,8 +169,10 @@
           <dt>OPEN </dt><dd>${show.open || 'TBA'}</dd>
           <dt>START </dt><dd>${show.start || 'TBA'}</dd>
         </dl>
-        ${guestsHTML}
         ${mapHTML}
+        ${guestsHTML}
+        ${bandHTML}
+        ${contactHTML}
       `;
 
       modal.classList.add('is-open');
