@@ -725,7 +725,9 @@
       });
     }
 
-    scrollEl.scrollLeft = 0;
+    // Start at 3rd card (index 2) so the fan shape is visible by default
+    const initialIndex = Math.min(2, cardEls.length - 1);
+    scrollEl.scrollLeft = initialIndex * cardW;
     updateCards();
   }
 
