@@ -804,6 +804,7 @@ ul, ol {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--color-border);
   color: var(--color-text);
+  font-family: inherit;
   font-family: var(--font-body-ja);
   font-size: 0.95rem;
   font-weight: 500;
