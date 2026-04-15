@@ -6,8 +6,8 @@
         "id": "fc-1",
         "name": "FC最速先行（e+）",
         "type": "fc",
-        "reception": { "start": "4/19（日）12:00", "end": "4/27（月）23:59" },
-        "lottery": "5/1（金）",
+        "reception": { "start": "4/19（日）20:00", "end": "4/27（月）23:59" },
+        "lottery": "5/2（土）",
         "payment": { "start": "5/2（土）13:00", "end": "5/5（火祝）21:00" },
         "active": true
       },
@@ -15,8 +15,8 @@
         "id": "pg-1",
         "name": "プレイガイド先行（e+）",
         "type": "playguide",
-        "reception": { "start": "4/19（日）12:00", "end": "4/27（月）23:59" },
-        "lottery": "5/1（金）",
+        "reception": { "start": "4/19（日）20:00", "end": "4/27（月）23:59" },
+        "lottery": "5/2（土）",
         "payment": { "start": "5/2（土）13:00", "end": "5/5（火祝）21:00" },
         "active": true
       },

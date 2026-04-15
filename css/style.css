@@ -790,6 +790,62 @@ ul, ol {
   color: var(--color-sub-text);
 }
 
+/* Ticket Bonus (来場者特典) */
+.ticket-bonus {
+  margin-top: 40px;
+  padding: 24px;
+  border: 1px dashed var(--color-accent);
+  background: rgba(201, 168, 76, 0.04);
+  border-radius: 2px;
+}
+
+.ticket-bonus__label {
+  display: inline-block;
+  font-family: var(--font-heading-en), var(--font-body-ja);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--gold-950);
+  background: var(--color-accent);
+  padding: 4px 12px;
+  margin-bottom: 16px;
+}
+
+.ticket-bonus__name {
+  font-family: var(--font-body-ja);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 12px;
+}
+
+.ticket-bonus__name small {
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: var(--color-sub-text);
+  margin-left: 4px;
+}
+
+.ticket-bonus__notes {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--color-sub-text);
+  line-height: 1.8;
+}
+
+.ticket-bonus__notes li {
+  padding-left: 1em;
+  text-indent: -1em;
+}
+
+.ticket-bonus__notes li::before {
+  content: '※';
+  color: var(--color-accent);
+  margin-right: 0.3em;
+}
+
 /* Accordion */
 .accordion {
   margin-bottom: 4px;
