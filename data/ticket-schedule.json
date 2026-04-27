@@ -9,7 +9,7 @@
         "reception": { "start": "4/19（日）20:00", "end": "4/27（月）23:59" },
         "lottery": "5/2（土）",
         "payment": { "start": "5/2（土）13:00", "end": "5/5（火祝）21:00" },
-        "active": true
+        "active": false
       },
       {
         "id": "pg-1",
@@ -18,33 +18,33 @@
         "reception": { "start": "4/19（日）20:00", "end": "4/27（月）23:59" },
         "lottery": "5/2（土）",
         "payment": { "start": "5/2（土）13:00", "end": "5/5（火祝）21:00" },
-        "active": true
+        "active": false
       },
       {
         "id": "fc-2",
         "name": "FC2次先行（e+）",
         "type": "fc",
         "reception": { "start": "5/2（土）12:00", "end": "5/10（日）23:59" },
-        "lottery": "5/13（水）",
+        "lottery": "5/14（木）",
         "payment": { "start": "5/14（木）13:00", "end": "5/17（日）21:00" },
         "confirmed": "5/19（火）",
-        "active": false
+        "active": true
       },
       {
         "id": "pg-2",
         "name": "プレイガイド2次先行（e+）",
         "type": "playguide",
         "reception": { "start": "5/2（土）12:00", "end": "5/10（日）23:59" },
-        "lottery": "5/13（水）",
+        "lottery": "5/14（木）",
         "payment": { "start": "5/14（木）13:00", "end": "5/17（日）21:00" },
-        "active": false
+        "active": true
       },
       {
         "id": "pg-3",
         "name": "プレイガイド3次先行（e+）",
         "type": "playguide",
         "reception": { "start": "5/24（日）12:00", "end": "6/7（日）23:59" },
-        "lottery": "6/11（木）",
+        "lottery": "6/12（金）",
         "payment": { "start": "6/12（金）13:00", "end": "6/15（月）21:00" },
         "active": false
       },
@@ -66,7 +66,7 @@
         "name": "FC最速先行",
         "type": "fc",
         "reception": { "start": "5/24（日）20:00", "end": "6/7（日）23:59" },
-        "lottery": "6/11（木）",
+        "lottery": "6/12（金）",
         "payment": { "start": "6/12（金）13:00", "end": "6/15（月）21:00" },
         "active": false
       },
@@ -75,7 +75,7 @@
         "name": "プレイガイド先行",
         "type": "playguide",
         "reception": { "start": "5/24（日）20:00", "end": "6/7（日）23:59" },
-        "lottery": "6/11（木）",
+        "lottery": "6/12（金）",
         "payment": { "start": "6/12（金）13:00", "end": "6/15（月）21:00" },
         "active": false
       },
@@ -84,7 +84,7 @@
         "name": "FC2次先行",
         "type": "fc",
         "reception": { "start": "6/20（土）12:00", "end": "7/5（日）23:59" },
-        "lottery": "7/8（水）",
+        "lottery": "7/9（木）",
         "payment": { "start": "7/9（木）13:00", "end": "7/12（日）21:00" },
         "active": false
       },
@@ -93,7 +93,7 @@
         "name": "プレイガイド2次先行",
         "type": "playguide",
         "reception": { "start": "6/20（土）12:00", "end": "7/5（日）23:59" },
-        "lottery": "7/8（水）",
+        "lottery": "7/9（木）",
         "payment": { "start": "7/9（木）13:00", "end": "7/12（日）21:00" },
         "active": false
       },
@@ -102,7 +102,7 @@
         "name": "プレイガイド3次先行",
         "type": "playguide",
         "reception": { "start": "7/11（土）12:00", "end": "7/26（日）23:59" },
-        "lottery": "7/29（水）",
+        "lottery": "7/30（木）",
         "payment": { "start": "7/30（木）13:00", "end": "8/2（日）21:00" },
         "active": false
       },
