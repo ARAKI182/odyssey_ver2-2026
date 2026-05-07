@@ -945,27 +945,51 @@ ul, ol {
 /* Ticket group heading — separates Livehouse / Zepp accordion clusters */
 .ticket-group-heading {
   font-family: var(--font-heading-en), var(--font-body-ja);
-  font-size: 0.95rem;
+  font-size: clamp(1.15rem, 3.4vw, 1.4rem);
   font-weight: 700;
-  letter-spacing: 0.18em;
-  color: var(--gold-300);
+  letter-spacing: 0.16em;
+  color: var(--gold-200);
   margin: 32px 0 14px;
-  padding-bottom: 8px;
+  padding-bottom: 10px;
   border-bottom: 1px solid rgba(201, 168, 76, 0.4);
   display: flex;
   align-items: baseline;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 12px;
+  text-shadow:
+    0 0 8px rgba(240, 217, 138, 0.35),
+    0 0 18px rgba(201, 168, 76, 0.25);
+  animation: ticket-group-glow 4s ease-in-out infinite;
 }
 .ticket-group-heading:first-of-type {
   margin-top: 24px;
 }
 .ticket-group-heading__range {
   font-family: var(--font-body-ja);
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   font-weight: 400;
   letter-spacing: 0.05em;
   color: var(--color-sub-text);
+  text-shadow: none;
+}
+
+@keyframes ticket-group-glow {
+  0%, 100% {
+    text-shadow:
+      0 0 6px rgba(240, 217, 138, 0.28),
+      0 0 14px rgba(201, 168, 76, 0.2);
+  }
+  50% {
+    text-shadow:
+      0 0 12px rgba(240, 217, 138, 0.55),
+      0 0 26px rgba(201, 168, 76, 0.4);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticket-group-heading {
+    animation: none;
+  }
 }
 
 .ticket__price-label {
