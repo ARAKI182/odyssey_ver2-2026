@@ -934,12 +934,23 @@ ul, ol {
   }
 }
 
+.ticket-price-card__sub {
+  margin: 2px 0 12px;
+  font-size: 0.72rem;
+  color: var(--color-sub-text);
+  letter-spacing: 0.04em;
+}
+
+.ticket-price-card__sub:last-of-type {
+  margin-bottom: 8px;
+}
+
 .ticket-price-card__meta {
   margin: 6px 0 0;
   font-size: 0.66rem;
   color: var(--color-sub-text);
   letter-spacing: 0.04em;
-  opacity: 0.8;
+  opacity: 0.7;
 }
 
 /* Ticket group heading — separates Livehouse / Zepp accordion clusters */
