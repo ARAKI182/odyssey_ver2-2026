@@ -74,8 +74,9 @@
       guestsHTML = `<span class="schedule__guests">w/ ${guestLinks}</span>`;
     }
 
+    // ソロ公演バッジは Phase 2 ゲスト発表前は出さない（出すと他公演にゲストありが推測されるため）
     let soloHTML = '';
-    if (show.solo) {
+    if (SHOW_ZEPP_GUESTS && show.solo) {
       soloHTML = '<span class="schedule__solo-badge">ONE MAN</span>';
     }
 
@@ -83,9 +84,9 @@
       <div class="schedule__date-col">
         <span class="schedule__date">${display}</span>
         <span class="schedule__day${dayClass}">${dow}</span>
+        <span class="schedule__city">${show.city}</span>
       </div>
       <div class="schedule__venue-col">
-        <span class="schedule__city">${show.city}</span>
         <span class="schedule__venue">${show.venue}</span>
         ${guestsHTML}
         ${soloHTML}
@@ -103,9 +104,10 @@
     const li = document.createElement('li');
     li.className = 'schedule__phase-header';
     li.setAttribute('aria-hidden', 'true');
+    const subHTML = sub ? `<span class="schedule__phase-sub">${sub}</span>` : '';
     li.innerHTML = `
       <span class="schedule__phase-label">${label}</span>
-      <span class="schedule__phase-sub">${sub}</span>
+      ${subHTML}
     `;
     return li;
   }
@@ -123,12 +125,12 @@
       const phase2 = allShows.filter(s => s.phase === 2);
 
       if (phase1.length > 0) {
-        list.appendChild(createPhaseHeader('PHASE 1 — LIVEHOUSE TOUR', 'ライブハウスツアー'));
+        list.appendChild(createPhaseHeader('PHASE 1 — LIVEHOUSE TOUR', ''));
         phase1.forEach(show => list.appendChild(createScheduleItem(show)));
       }
 
       if (phase2.length > 0) {
-        list.appendChild(createPhaseHeader('PHASE 2 — ZEPP TOUR', 'Zeppツアー'));
+        list.appendChild(createPhaseHeader('PHASE 2 — ZEPP TOUR', ''));
         phase2.forEach(show => list.appendChild(createScheduleItem(show)));
       }
     } catch (err) {
@@ -162,7 +164,7 @@
         ).join(' / ');
         guestsHTML = `<p class="schedule-detail__guests">GUEST: ${guestLinks}</p>`;
       }
-      if (show.solo) {
+      if (SHOW_ZEPP_GUESTS && show.solo) {
         guestsHTML = '<p class="schedule-detail__guests" style="color: var(--color-accent);">ONE MAN LIVE</p>';
       }
 

@@ -647,7 +647,7 @@ ul, ol {
 
 .schedule__item {
   display: grid;
-  grid-template-columns: 120px 1fr 160px 36px;
+  grid-template-columns: 200px 1fr 160px 36px;
   align-items: center;
   gap: 20px;
   padding: 20px 16px;
@@ -666,7 +666,8 @@ ul, ol {
 .schedule__date-col {
   display: flex;
   align-items: baseline;
-  gap: 6px;
+  flex-wrap: wrap;
+  gap: 6px 10px;
 }
 
 .schedule__date {
@@ -689,12 +690,10 @@ ul, ol {
 
 .schedule__city {
   font-family: var(--font-heading-en);
-  font-size: 0.7rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   color: var(--color-accent);
-  display: block;
-  margin-bottom: 2px;
 }
 
 .schedule__venue {
@@ -878,6 +877,71 @@ ul, ol {
   flex-wrap: wrap;
 }
 
+/* Per-tour price card — minimal info panel (not a clickable element)
+   Left gold accent line distinguishes it from CTA buttons / accordions */
+.ticket-price-card {
+  margin: 0 0 24px;
+  padding: 8px 0 10px 18px;
+  border: none;
+  border-left: 3px solid var(--color-accent);
+  background: transparent;
+  border-radius: 0;
+}
+
+.ticket-price-card__row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 4px 0;
+}
+
+.ticket-price-card__label {
+  font-family: var(--font-heading-en), var(--font-body-ja);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--color-text);
+}
+
+/* Value — gold gradient text with a soft pulse glow */
+.ticket-price-card__value {
+  font-family: var(--font-heading-en);
+  font-size: clamp(1.5rem, 4.4vw, 2rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  background: linear-gradient(135deg, #F0D98A 0%, #E6CB6B 35%, #C9A84C 70%, #AF8E3C 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 8px rgba(201, 168, 76, 0.25));
+  animation: ticket-price-pulse 3.6s ease-in-out infinite;
+}
+
+@keyframes ticket-price-pulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 6px rgba(201, 168, 76, 0.18));
+  }
+  50% {
+    filter: drop-shadow(0 0 14px rgba(240, 217, 138, 0.45));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticket-price-card__value {
+    animation: none;
+  }
+}
+
+.ticket-price-card__meta {
+  margin: 6px 0 0;
+  font-size: 0.66rem;
+  color: var(--color-sub-text);
+  letter-spacing: 0.04em;
+  opacity: 0.8;
+}
+
 /* Ticket group heading — separates Livehouse / Zepp accordion clusters */
 .ticket-group-heading {
   font-family: var(--font-heading-en), var(--font-body-ja);
@@ -888,9 +952,20 @@ ul, ol {
   margin: 32px 0 14px;
   padding-bottom: 8px;
   border-bottom: 1px solid rgba(201, 168, 76, 0.4);
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 .ticket-group-heading:first-of-type {
   margin-top: 24px;
+}
+.ticket-group-heading__range {
+  font-family: var(--font-body-ja);
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  color: var(--color-sub-text);
 }
 
 .ticket__price-label {
@@ -1326,6 +1401,7 @@ ul, ol {
 /* CTA button */
 .ticket-schedule__cta {
   display: block;
+  position: relative;
   text-align: center;
   margin-top: 20px;
   padding: 14px 32px;
@@ -1337,6 +1413,45 @@ ul, ol {
   background: var(--color-accent);
   border: 1px solid var(--color-accent);
   transition: background 0.3s, color 0.3s;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Light spot orbiting the button border — uses offset-path on pseudo element.
+   A small bright dot follows the rectangular perimeter of the button. */
+.ticket-schedule__cta::before {
+  content: '';
+  position: absolute;
+  width: 80px;
+  height: 22px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 250, 220, 0.6) 30%,
+    transparent 70%
+  );
+  filter: blur(4px);
+  offset-path: rect(0 100% 100% 0);
+  offset-distance: 0%;
+  offset-rotate: 0deg;
+  animation: cta-orbit 3.5s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ticket-schedule__cta > *,
+.ticket-schedule__cta {
+  position: relative;
+}
+
+@keyframes cta-orbit {
+  to { offset-distance: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticket-schedule__cta::before {
+    animation: none;
+  }
 }
 
 .ticket-schedule__cta:hover {
@@ -2120,8 +2235,8 @@ ul, ol {
 
   .schedule__item {
     grid-template-columns: 1fr 36px;
-    gap: 6px;
-    padding: 16px 12px;
+    gap: 4px;
+    padding: 14px 12px;
   }
 
   .schedule__date-col,
@@ -2139,6 +2254,18 @@ ul, ol {
   .schedule__time-col {
     text-align: left;
     font-size: 0.72rem;
+  }
+
+  /* Compact mobile schedule item — 日付＋県名 を1行目に集約 */
+  .schedule__date-col {
+    flex-wrap: nowrap;
+    gap: 4px 10px;
+  }
+  .schedule__city {
+    font-size: 0.72rem;
+  }
+  .schedule__venue {
+    font-size: 0.9rem;
   }
 
   .ticket__price {
