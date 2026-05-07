@@ -618,16 +618,13 @@ ul, ol {
   flex-direction: column;
   align-items: flex-start;
   gap: 4px;
-  padding: 36px 16px 18px;
-  margin-top: 24px;
-  border-top: 1px solid var(--color-accent);
+  padding: 56px 16px 18px;
+  margin-top: 0;
   list-style: none;
 }
 
 .schedule__phase-header:first-child {
-  margin-top: 0;
   padding-top: 16px;
-  border-top: none;
 }
 
 .schedule__phase-label {
@@ -661,6 +658,33 @@ ul, ol {
 
 .schedule__item:hover {
   background: var(--color-hover);
+}
+
+/* Phase 2 (Zepp) items — card style, distinct from Phase 1 row style */
+.schedule__item--zepp {
+  border: 1px solid rgba(201, 168, 76, 0.28);
+  border-bottom: 1px solid rgba(201, 168, 76, 0.28);
+  background: linear-gradient(180deg, rgba(201, 168, 76, 0.06) 0%, rgba(201, 168, 76, 0.02) 100%);
+  border-radius: 4px;
+  margin: 10px 0;
+  position: relative;
+  transition: background 0.25s, border-color 0.25s, transform 0.25s;
+}
+
+.schedule__item--zepp:hover {
+  background: linear-gradient(180deg, rgba(201, 168, 76, 0.12) 0%, rgba(201, 168, 76, 0.04) 100%);
+  border-color: rgba(201, 168, 76, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Override the dashed top border on first child since cards have own borders */
+.schedule__item--zepp:first-child {
+  border-top: 1px solid rgba(201, 168, 76, 0.28);
+}
+
+/* Cancel the dashed bottom-border separator that Phase 1 items use */
+.schedule__item--zepp + .schedule__item--zepp {
+  margin-top: 10px;
 }
 
 .schedule__date-col {

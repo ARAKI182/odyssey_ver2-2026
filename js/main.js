@@ -59,7 +59,7 @@
 
   function createScheduleItem(show) {
     const li = document.createElement('li');
-    li.className = 'schedule__item';
+    li.className = 'schedule__item' + (show.phase === 2 ? ' schedule__item--zepp' : '');
 
     const { display, dow, dayType } = formatDate(show.date, show.holiday);
     const dayClass = dayType ? ` schedule__day--${dayType}` : '';
