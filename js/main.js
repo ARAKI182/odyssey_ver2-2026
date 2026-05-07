@@ -33,6 +33,10 @@
      ----------------------------------------- */
   const DAY_NAMES = ['日', '月', '火', '水', '木', '金', '土'];
 
+  // Phase 2 ゲスト発表フラグ — 6/20（土）20:00 に true へ切替
+  // shows.json に guests データはあるが、発表日まで非表示にする
+  const SHOW_ZEPP_GUESTS = false;
+
   // Store loaded shows for modal access
   let allShows = [];
 
@@ -61,7 +65,7 @@
     const dayClass = dayType ? ` schedule__day--${dayType}` : '';
 
     let guestsHTML = '';
-    if (show.guests && show.guests.length > 0) {
+    if (SHOW_ZEPP_GUESTS && show.guests && show.guests.length > 0) {
       const guestLinks = show.guests.map(g =>
         g.x_url
           ? `<a href="${g.x_url}" target="_blank" rel="noopener">${g.name}</a>`
@@ -95,6 +99,17 @@
     return li;
   }
 
+  function createPhaseHeader(label, sub) {
+    const li = document.createElement('li');
+    li.className = 'schedule__phase-header';
+    li.setAttribute('aria-hidden', 'true');
+    li.innerHTML = `
+      <span class="schedule__phase-label">${label}</span>
+      <span class="schedule__phase-sub">${sub}</span>
+    `;
+    return li;
+  }
+
   async function loadSchedule() {
     const list = document.getElementById('scheduleList');
     if (!list) return;
@@ -104,12 +119,19 @@
       if (!res.ok) throw new Error('Failed to load shows.json');
       allShows = await res.json();
 
-      // Only show phase 1 (livehouse) initially
-      allShows.filter(s => s.phase === 1).forEach(show => {
-        list.appendChild(createScheduleItem(show));
-      });
+      const phase1 = allShows.filter(s => s.phase === 1);
+      const phase2 = allShows.filter(s => s.phase === 2);
+
+      if (phase1.length > 0) {
+        list.appendChild(createPhaseHeader('PHASE 1 — LIVEHOUSE TOUR', 'ライブハウスツアー'));
+        phase1.forEach(show => list.appendChild(createScheduleItem(show)));
+      }
+
+      if (phase2.length > 0) {
+        list.appendChild(createPhaseHeader('PHASE 2 — ZEPP TOUR', 'Zeppツアー'));
+        phase2.forEach(show => list.appendChild(createScheduleItem(show)));
+      }
     } catch (err) {
-      console.error('Schedule load error:', err);
       list.innerHTML = '<li style="color: var(--color-sub-text);">スケジュールを読み込めませんでした。</li>';
     }
   }
@@ -132,7 +154,7 @@
       const dayClass = dayType ? ` schedule__day--${dayType}` : '';
 
       let guestsHTML = '';
-      if (show.guests && show.guests.length > 0) {
+      if (SHOW_ZEPP_GUESTS && show.guests && show.guests.length > 0) {
         const guestLinks = show.guests.map(g =>
           g.x_url
             ? `<a href="${g.x_url}" target="_blank" rel="noopener">${g.name}</a>`

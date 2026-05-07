@@ -71,17 +71,35 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Fixed background texture — uses ::before instead of background-attachment:fixed
-   because iOS Safari doesn't support fixed backgrounds properly (causes zoom + scroll bugs) */
+/* Fixed background = KV without character — uses ::before instead of background-attachment:fixed
+   because iOS Safari doesn't support fixed backgrounds properly (causes zoom + scroll bugs).
+   transform: translateZ(0) で GPU レイヤー化、スクロール中の描画チラつき防止 */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
-  z-index: -1;
-  background-image: url('../img/bg-texture.jpg');
+  z-index: -2;
+  background-image: url('../img/KV_background.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Dark overlay over the fixed background — improves contrast for content sections.
+   HEROは独自のbackground-imageでKVを表示するため、HERO内では影響なし */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: rgba(15, 13, 8, 0.30);
+  pointer-events: none;
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 img {
@@ -234,58 +252,138 @@ ul, ol {
   position: relative;
   min-height: 100dvh;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: stretch;
+  justify-content: stretch;
   text-align: center;
-  background: transparent;
-  color: var(--color-text-hero);
+  background-image: url('../img/KV.webp');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  color: #ffffff;
 }
 
-/* Hero → section gradient fade */
+/* Desktop: extend hero height so character body shows further down */
+@media (min-width: 768px) {
+  .hero {
+    min-height: 130vh;
+  }
+}
+
+@media (min-width: 1280px) {
+  .hero {
+    min-height: 145vh;
+  }
+}
+
+/* HERO bottom — narrow strong dark fade, hiding the KV→KV_background seam in darkness */
 .hero::after {
   content: '';
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 180px;
-  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.75));
+  height: 100px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 1) 100%
+  );
   pointer-events: none;
+  z-index: 1;
+}
+
+/* Keep hero content (logo / date / countdown) above the dark gradient */
+.hero__inner,
+.hero__scroll-hint {
+  position: relative;
+  z-index: 2;
+}
+
+/* First content section after HERO — narrow dark fade-in, meeting HERO's
+   bottom gradient in full darkness so the seam is hidden in shadow */
+.hero + .section {
+  position: relative;
+}
+.hero + .section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+.hero + .section > * {
+  position: relative;
+  z-index: 1;
 }
 
 .hero__inner {
+  flex: 1;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
   gap: 24px;
-  padding: 0 var(--section-pad-x);
+  padding: 80px var(--section-pad-x) 100px;
+  width: 100%;
 }
 
 .hero__logo {
-  width: 95%;
-  max-width: 720px;
-  margin-bottom: 24px;
+  width: 80%;
+  max-width: 560px;
+  margin: 0;
+}
+
+.hero__bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+/* White outline for red text on KV — using paint-order + text-stroke for clean SVG-like stroke
+   (4-corner text-shadow looks pixelated/jaggy at most weights) */
+.hero__date,
+.countdown__number {
+  -webkit-text-stroke: 2px #ffffff;
+          text-stroke: 2px #ffffff;
+  paint-order: stroke fill;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+}
+
+.countdown__number {
+  -webkit-text-stroke-width: 3px;
+          text-stroke-width: 3px;
 }
 
 .hero__date {
   font-family: var(--font-heading-en);
-  font-size: clamp(1rem, 3vw, 1.6rem);
+  font-size: clamp(1.1rem, 3vw, 1.7rem);
   font-weight: 700;
   letter-spacing: 0.25em;
-  color: var(--color-text-hero);
+  color: #e63946;
+  margin: 0;
 }
 
 .hero__countdown {
   display: flex;
   align-items: baseline;
   gap: 12px;
-  margin-top: 8px;
+  margin-top: 0;
 }
 
 .countdown__label {
   font-family: var(--font-body-ja);
   font-size: 0.85rem;
-  color: var(--color-sub-text-hero);
+  color: #ffffff;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
 }
 
 .countdown__number {
@@ -301,7 +399,8 @@ ul, ol {
   font-size: clamp(0.8rem, 2vw, 1.1rem);
   font-weight: 700;
   letter-spacing: 0.2em;
-  color: var(--color-sub-text-hero);
+  color: #ffffff;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
 }
 
 /* Scroll hint */
@@ -314,8 +413,9 @@ ul, ol {
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  color: var(--color-text-hero);
-  opacity: 0.75;
+  color: #ffffff;
+  opacity: 0.85;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
 }
 
 .scroll-hint__text {
@@ -511,6 +611,40 @@ ul, ol {
 /* -----------------------------------------
    8. SCHEDULE (NiziU style — horizontal card rows)
    ----------------------------------------- */
+
+/* Phase divider — separates Phase 1 (Livehouse) and Phase 2 (Zepp) groups */
+.schedule__phase-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 36px 16px 18px;
+  margin-top: 24px;
+  border-top: 1px solid var(--color-accent);
+  list-style: none;
+}
+
+.schedule__phase-header:first-child {
+  margin-top: 0;
+  padding-top: 16px;
+  border-top: none;
+}
+
+.schedule__phase-label {
+  font-family: var(--font-heading-en);
+  font-size: clamp(0.95rem, 2.4vw, 1.2rem);
+  letter-spacing: 0.22em;
+  color: var(--gold-300);
+  font-weight: 700;
+}
+
+.schedule__phase-sub {
+  font-family: var(--font-body-ja);
+  font-size: 0.78rem;
+  color: var(--color-sub-text);
+  letter-spacing: 0.05em;
+}
+
 .schedule__item {
   display: grid;
   grid-template-columns: 120px 1fr 160px 36px;
@@ -744,6 +878,21 @@ ul, ol {
   flex-wrap: wrap;
 }
 
+/* Ticket group heading — separates Livehouse / Zepp accordion clusters */
+.ticket-group-heading {
+  font-family: var(--font-heading-en), var(--font-body-ja);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--gold-300);
+  margin: 32px 0 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.4);
+}
+.ticket-group-heading:first-of-type {
+  margin-top: 24px;
+}
+
 .ticket__price-label {
   font-family: var(--font-heading-en);
   font-size: 0.85rem;
@@ -943,6 +1092,28 @@ ul, ol {
   font-weight: 400;
   color: var(--color-sub-text);
   margin-left: 6px;
+}
+
+.ticket-bonus__media {
+  margin: 0 0 18px;
+  padding: 0;
+  text-align: center;
+}
+
+.ticket-bonus__media img {
+  display: block;
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 2px;
+}
+
+.ticket-bonus__media figcaption {
+  margin-top: 6px;
+  font-size: 0.7rem;
+  color: var(--color-sub-text);
+  letter-spacing: 0.04em;
 }
 
 .ticket-bonus__notes {
@@ -2042,6 +2213,16 @@ ul, ol {
 @supports (min-height: 100dvh) {
   .hero {
     min-height: 100dvh;
+  }
+  @media (min-width: 768px) {
+    .hero {
+      min-height: 130dvh;
+    }
+  }
+  @media (min-width: 1280px) {
+    .hero {
+      min-height: 145dvh;
+    }
   }
 }
 

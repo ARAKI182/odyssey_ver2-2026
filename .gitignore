@@ -1,0 +1,16 @@
+# Local Claude session metadata
+.claude/
+
+# Original/source assets too large for git (64MB+) — keep as local source only
+img/KV.png
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/
+
+# Backups
+*.bak
+*~
