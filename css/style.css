@@ -1008,6 +1008,20 @@ ul, ol {
   text-shadow: none;
 }
 
+/* Notice line that sits right under a ticket group heading
+   (used for Zepp tour guest pre-announcement) */
+.ticket-group-note {
+  margin: -4px 0 18px;
+  padding: 10px 14px;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  background: rgba(201, 168, 76, 0.06);
+  border-left: 2px solid var(--color-accent);
+  border-radius: 2px;
+  letter-spacing: 0.02em;
+}
+
 @keyframes ticket-group-glow {
   0%, 100% {
     text-shadow:
