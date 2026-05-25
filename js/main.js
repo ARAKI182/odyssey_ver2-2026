@@ -59,7 +59,9 @@
 
   function createScheduleItem(show) {
     const li = document.createElement('li');
-    li.className = 'schedule__item' + (show.phase === 2 ? ' schedule__item--zepp' : '');
+    li.className = 'schedule__item'
+      + (show.phase === 2 ? ' schedule__item--zepp' : '')
+      + (show.status === 'soldout' ? ' schedule__item--soldout' : '');
 
     const { display, dow, dayType } = formatDate(show.date, show.holiday);
     const dayClass = dayType ? ` schedule__day--${dayType}` : '';
@@ -80,6 +82,11 @@
       soloHTML = '<span class="schedule__solo-badge">ONE MAN</span>';
     }
 
+    // SOLD OUT バッジ
+    const soldoutHTML = show.status === 'soldout'
+      ? '<span class="schedule__soldout-badge">SOLD OUT</span>'
+      : '';
+
     li.innerHTML = `
       <div class="schedule__date-col">
         <span class="schedule__date">${display}</span>
@@ -95,6 +102,7 @@
         OPEN ${show.open || '—'} / START ${show.start || '—'}
       </div>
       <button class="schedule__detail-btn" data-show-id="${show.id}" aria-label="詳細">+</button>
+      ${soldoutHTML}
     `;
 
     return li;

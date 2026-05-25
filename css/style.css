@@ -765,6 +765,56 @@ ul, ol {
   margin-top: 4px;
 }
 
+/* SOLD OUT バッジ — 右上に被せる斜めスタンプ風 */
+.schedule__item {
+  position: relative;
+}
+
+.schedule__soldout-badge {
+  position: absolute;
+  top: 50%;
+  right: 56px;
+  display: inline-block;
+  font-family: var(--font-heading-en);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: #ffffff;
+  background: #c0202b;
+  padding: 5px 14px;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  transform: translateY(-50%) rotate(-4deg);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* SOLD OUT 公演はテキストを軽く dim させて非アクティブ感を出す */
+.schedule__item--soldout .schedule__date,
+.schedule__item--soldout .schedule__day,
+.schedule__item--soldout .schedule__city,
+.schedule__item--soldout .schedule__venue,
+.schedule__item--soldout .schedule__time-col {
+  opacity: 0.55;
+}
+
+.schedule__item--soldout:hover .schedule__date,
+.schedule__item--soldout:hover .schedule__day,
+.schedule__item--soldout:hover .schedule__city,
+.schedule__item--soldout:hover .schedule__venue,
+.schedule__item--soldout:hover .schedule__time-col {
+  opacity: 0.85;
+}
+
+@media (max-width: 480px) {
+  .schedule__soldout-badge {
+    right: 48px;
+    font-size: 0.74rem;
+    letter-spacing: 0.18em;
+    padding: 4px 10px;
+  }
+}
+
 /* Day of week colours */
 .schedule__day--sat { color: #6ea8d9; }
 .schedule__day--sun { color: #e06060; }
