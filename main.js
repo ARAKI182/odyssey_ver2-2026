@@ -121,7 +121,7 @@
     if (!list) return;
 
     try {
-      const res = await fetch('data/shows.json');
+      const res = await fetch('shows.json');
       if (!res.ok) throw new Error('Failed to load shows.json');
       allShows = await res.json();
 
@@ -396,7 +396,7 @@
     if (!list) return;
 
     try {
-      const res = await fetch('data/news.json');
+      const res = await fetch('news.json');
       if (!res.ok) throw new Error('Failed to load news.json');
       newsData = await res.json();
 
