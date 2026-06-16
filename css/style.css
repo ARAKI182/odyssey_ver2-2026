@@ -1490,6 +1490,15 @@ ul, ol {
   background: rgba(60, 120, 220, 0.15);
 }
 
+/* 一般発売 (gold accent — emphasizes "今すぐ買える" 性質) */
+.accordion__trigger--general {
+  border-color: rgba(201, 168, 76, 0.55);
+  background: rgba(201, 168, 76, 0.10);
+}
+.accordion__trigger--general:hover {
+  background: rgba(201, 168, 76, 0.18);
+}
+
 /* Accordion date range (shown on trigger) */
 .accordion__date-range {
   display: block;
@@ -1622,6 +1631,163 @@ ul, ol {
   letter-spacing: 0.25em;
   color: var(--color-sub-text);
 }
+
+/* -----------------------------------------
+   9b. GUEST セクション (Zepp公演 出演者)
+   ----------------------------------------- */
+.guest__lead {
+  text-align: center;
+  font-family: var(--font-heading-en), var(--font-body-ja);
+  font-size: 0.85rem;
+  letter-spacing: 0.22em;
+  color: var(--gold-300);
+  margin: 0 0 36px;
+}
+
+.guest__list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.guest-card {
+  position: relative;
+  padding: 16px 18px 18px;
+  background: linear-gradient(180deg, rgba(201, 168, 76, 0.06) 0%, rgba(201, 168, 76, 0.02) 100%);
+  border: 1px solid rgba(201, 168, 76, 0.28);
+  border-radius: 4px;
+}
+
+.guest-card__header {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 5px 12px;
+  padding-bottom: 10px;
+  margin-bottom: 14px;
+  border-bottom: 1px dashed rgba(201, 168, 76, 0.24);
+}
+
+.guest-card__date {
+  font-family: var(--font-heading-en);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--color-text);
+}
+
+.guest-card__day {
+  font-family: var(--font-heading-en);
+  font-size: 0.74rem;
+  color: var(--color-sub-text);
+}
+
+.guest-card__city {
+  font-family: var(--font-heading-en);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+}
+
+.guest-card__venue {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--color-text);
+  margin-left: auto;
+}
+
+.guest-card__people {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.guest-card__person {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.guest-card__photo {
+  width: 100%;
+  max-width: 150px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border: 1px solid rgba(201, 168, 76, 0.4);
+  border-radius: 4px;
+  transition: transform 0.4s ease, border-color 0.4s ease;
+}
+
+.guest-card__person:hover .guest-card__photo {
+  transform: translateY(-2px);
+  border-color: var(--color-accent);
+}
+
+.guest-card__photo--placeholder {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.guest-card__name {
+  font-family: var(--font-body-ja);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a.guest-card__name:hover {
+  color: var(--gold-300);
+}
+
+.guest-card__name-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.guest-card__x {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid rgba(201, 168, 76, 0.4);
+  color: var(--color-text);
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.guest-card__x:hover {
+  background: var(--color-accent);
+  color: var(--gold-950);
+  border-color: var(--color-accent);
+}
+
+.guest-card--solo .guest-card__solo-mark {
+  text-align: center;
+  font-family: var(--font-heading-en);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  color: var(--gold-300);
+  padding: 14px 0;
+}
+
+@media (min-width: 768px) {
+  .guest-card__people {
+    gap: 18px;
+  }
+  .guest-card__photo {
+    max-width: 180px;
+  }
+}
+
 
 /* -----------------------------------------
    10b. FANCLUB (FC会員限定特典)

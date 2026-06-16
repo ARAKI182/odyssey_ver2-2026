@@ -87,6 +87,7 @@
     <ul class="nav-overlay__list">
       <li><a href="#news" class="nav-overlay__link">NEWS</a></li>
       <li><a href="#schedule" class="nav-overlay__link">SCHEDULE</a></li>
+      <li><a href="#guest" class="nav-overlay__link">GUEST</a></li>
       <li><a href="#ticket" class="nav-overlay__link">TICKET</a></li>
       <li><a href="#goods" class="nav-overlay__link">GOODS</a></li>
       <li><a href="#movie" class="nav-overlay__link">MOVIE</a></li>
@@ -154,6 +155,16 @@
     </div>
   </div>
 
+  <section class="section" id="guest">
+    <div class="section__inner">
+      <h2 class="section__heading reveal-heading">GUEST</h2>
+      <p class="guest__lead fade-item">Zepp公演 出演ゲスト</p>
+      <div class="guest__list fade-item" id="guestList">
+        <!-- JS で動的生成 -->
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="ticket">
     <div class="section__inner">
       <h2 class="section__heading reveal-heading">TICKET</h2>
@@ -195,25 +206,23 @@
         <p class="ticket-price-card__meta">(tax in) +Drink</p>
       </div>
 
-      <div class="accordion accordion--playguide fade-item">
-        <button class="accordion__trigger accordion__trigger--playguide" aria-expanded="false">
-          <span>プレイガイド3次先行<small class="accordion__date-range">5/24(日)20:00〜6/7(日)23:59</small></span>
+      <div class="accordion accordion--general fade-item">
+        <button class="accordion__trigger accordion__trigger--general" aria-expanded="false">
+          <span>一般発売（先着）<small class="accordion__date-range">6/20(土)17:00〜 売り切れ次第終了</small></span>
           <span class="accordion__icon"></span>
         </button>
         <div class="accordion__content">
           <div class="accordion__inner">
             <dl class="ticket-schedule">
-              <dt>受付</dt><dd>5/24（日）20:00 〜 6/7（日）23:59</dd>
-              <dt>抽選結果</dt><dd>6/12（金）</dd>
-              <dt>入金期間</dt><dd>6/12（金）13:00 〜 6/15（月）21:00</dd>
+              <dt>受付</dt><dd>6/20（土）17:00 〜 売り切れ次第終了</dd>
+              <dt>販売方式</dt><dd>先着</dd>
             </dl>
-            <a href="https://eplus.jp/araki2026/" target="_blank" rel="noopener" class="ticket-schedule__cta" aria-label="プレイガイド3次先行に申し込む">申し込む</a>
+            <a href="https://eplus.jp/araki2026/" target="_blank" rel="noopener" class="ticket-schedule__cta" aria-label="ライブハウスツアー一般発売に申し込む">申し込む</a>
           </div>
         </div>
       </div>
 
       <h3 class="ticket-group-heading">Zeppツアー<span class="ticket-group-heading__range">（12/6〜12/26）</span></h3>
-      <p class="ticket-group-note">🎤 Zepp公演にはスペシャルゲスト出演を予定しております。詳細は6/20（土）に解禁いたします。</p>
 
       <div class="ticket-price-card fade-item">
         <div class="ticket-price-card__row">
@@ -231,34 +240,34 @@
 
       <div class="accordion accordion--fc fade-item">
         <button class="accordion__trigger accordion__trigger--fc" aria-expanded="false">
-          <span>FCあらき組 最速先行<small class="accordion__date-range">5/24(日)20:00〜6/7(日)23:59</small></span>
+          <span>FCあらき組 2次先行<small class="accordion__date-range">6/20(土)12:00〜7/5(日)23:59</small></span>
           <span class="accordion__icon"></span>
         </button>
         <div class="accordion__content">
           <div class="accordion__inner">
             <dl class="ticket-schedule">
-              <dt>受付</dt><dd>5/24（日）20:00 〜 6/7（日）23:59</dd>
-              <dt>抽選結果</dt><dd>6/12（金）</dd>
-              <dt>入金期間</dt><dd>6/12（金）13:00 〜 6/15（月）21:00</dd>
+              <dt>受付</dt><dd>6/20（土）12:00 〜 7/5（日）23:59</dd>
+              <dt>抽選結果</dt><dd>7/9（木）</dd>
+              <dt>入金期間</dt><dd>7/9（木）13:00 〜 7/12（日）21:00</dd>
             </dl>
-            <a href="https://araki-axiz.com/contents/385155" target="_blank" rel="noopener" class="ticket-schedule__cta" aria-label="FCあらき組 Zepp最速先行に申し込む">申し込む</a>
+            <a href="https://araki-axiz.com/contents/399182" target="_blank" rel="noopener" class="ticket-schedule__cta" aria-label="FCあらき組 Zepp2次先行に申し込む">申し込む</a>
           </div>
         </div>
       </div>
 
       <div class="accordion accordion--playguide fade-item">
         <button class="accordion__trigger accordion__trigger--playguide" aria-expanded="false">
-          <span>プレイガイド先行<small class="accordion__date-range">5/24(日)20:00〜6/7(日)23:59</small></span>
+          <span>プレイガイド2次先行<small class="accordion__date-range">6/20(土)12:00〜7/5(日)23:59</small></span>
           <span class="accordion__icon"></span>
         </button>
         <div class="accordion__content">
           <div class="accordion__inner">
             <dl class="ticket-schedule">
-              <dt>受付</dt><dd>5/24（日）20:00 〜 6/7（日）23:59</dd>
-              <dt>抽選結果</dt><dd>6/12（金）</dd>
-              <dt>入金期間</dt><dd>6/12（金）13:00 〜 6/15（月）21:00</dd>
+              <dt>受付</dt><dd>6/20（土）12:00 〜 7/5（日）23:59</dd>
+              <dt>抽選結果</dt><dd>7/9（木）</dd>
+              <dt>入金期間</dt><dd>7/9（木）13:00 〜 7/12（日）21:00</dd>
             </dl>
-            <a href="https://eplus.jp/araki2026/" target="_blank" rel="noopener" class="ticket-schedule__cta" aria-label="プレイガイド Zepp先行に申し込む">申し込む</a>
+            <a href="https://eplus.jp/araki2026/" target="_blank" rel="noopener" class="ticket-schedule__cta" aria-label="プレイガイド Zepp2次先行に申し込む">申し込む</a>
           </div>
         </div>
       </div>
@@ -283,6 +292,7 @@
 
     </div>
   </section>
+
 
   <section class="section" id="goods">
     <div class="section__inner">

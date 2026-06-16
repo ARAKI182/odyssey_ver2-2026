@@ -7,9 +7,18 @@ img/KV.png
 # OS / editor
 .DS_Store
 Thumbs.db
+desktop.ini
 *.swp
 *.swo
 .vscode/
+
+# Google Drive auto-generated thumbnails
+.tmp.driveupload/
+.tmp.drivedownload/
+
+# Image source folders (work-in-progress assets — generate optimized versions only)
+img/アー写正方形/
+img/journal/past/originals/
 
 # Backups
 *.bak

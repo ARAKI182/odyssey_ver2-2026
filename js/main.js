@@ -35,7 +35,7 @@
 
   // Phase 2 ゲスト発表フラグ — 6/20（土）20:00 に true へ切替
   // shows.json に guests データはあるが、発表日まで非表示にする
-  const SHOW_ZEPP_GUESTS = false;
+  const SHOW_ZEPP_GUESTS = true;
 
   // Store loaded shows for modal access
   let allShows = [];
@@ -68,12 +68,8 @@
 
     let guestsHTML = '';
     if (SHOW_ZEPP_GUESTS && show.guests && show.guests.length > 0) {
-      const guestLinks = show.guests.map(g =>
-        g.x_url
-          ? `<a href="${g.x_url}" target="_blank" rel="noopener">${g.name}</a>`
-          : g.name
-      ).join(' / ');
-      guestsHTML = `<span class="schedule__guests">w/ ${guestLinks}</span>`;
+      const names = show.guests.map(g => g.name).join(' / ');
+      guestsHTML = `<span class="schedule__guests">Guest: ${names}</span>`;
     }
 
     // ソロ公演バッジは Phase 2 ゲスト発表前は出さない（出すと他公演にゲストありが推測されるため）
@@ -141,9 +137,69 @@
         list.appendChild(createPhaseHeader('PHASE 2 — ZEPP TOUR', ''));
         phase2.forEach(show => list.appendChild(createScheduleItem(show)));
       }
+
+      renderGuestSection(phase2);
     } catch (err) {
       list.innerHTML = '<li style="color: var(--color-sub-text);">スケジュールを読み込めませんでした。</li>';
     }
+  }
+
+  function renderGuestSection(phase2Shows) {
+    const section = document.getElementById('guest');
+    const guestList = document.getElementById('guestList');
+    const navLink = document.querySelector('.nav-overlay__link[href="#guest"]');
+    if (!section || !guestList) return;
+
+    // ゲスト発表前は GUEST セクション & nav リンクごと非表示
+    if (!SHOW_ZEPP_GUESTS) {
+      section.style.display = 'none';
+      if (navLink) navLink.parentElement.style.display = 'none';
+      return;
+    }
+
+    const { display: _d } = {}; // satisfy lint placeholder
+    guestList.innerHTML = '';
+
+    phase2Shows.forEach(show => {
+      const { display, dow, dayType } = formatDate(show.date, show.holiday);
+      const dayClass = dayType ? ` schedule__day--${dayType}` : '';
+
+      const isSolo = !!show.solo;
+      const cardClass = 'guest-card fade-item' + (isSolo ? ' guest-card--solo' : '');
+
+      let bodyHTML = '';
+      if (isSolo) {
+        bodyHTML = '<div class="guest-card__solo-mark">ONE MAN LIVE</div>';
+      } else if (show.guests && show.guests.length > 0) {
+        const xIconSVG = '<svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>';
+        bodyHTML = '<div class="guest-card__people">'
+          + show.guests.map(g => {
+              const photo = g.photo
+                ? `<img src="${g.photo}" alt="${g.name}" loading="lazy" class="guest-card__photo">`
+                : '<div class="guest-card__photo guest-card__photo--placeholder"></div>';
+              const xLink = g.x_url
+                ? `<a href="${g.x_url}" target="_blank" rel="noopener" class="guest-card__x" aria-label="${g.name}のX">${xIconSVG}</a>`
+                : '';
+              return `<div class="guest-card__person">${photo}<div class="guest-card__name-row"><span class="guest-card__name">${g.name}</span>${xLink}</div></div>`;
+            }).join('')
+          + '</div>';
+      }
+
+      const card = document.createElement('div');
+      card.className = cardClass;
+      card.innerHTML = `
+        <div class="guest-card__header">
+          <span class="guest-card__date">${display}</span>
+          <span class="guest-card__day${dayClass}">${dow}</span>
+          <span class="guest-card__city">${show.city}</span>
+          <span class="guest-card__venue">${show.venue}</span>
+        </div>
+        ${bodyHTML}
+      `;
+      guestList.appendChild(card);
+    });
+
+    observeNewFadeItems(guestList);
   }
 
   /* -----------------------------------------
@@ -165,12 +221,8 @@
 
       let guestsHTML = '';
       if (SHOW_ZEPP_GUESTS && show.guests && show.guests.length > 0) {
-        const guestLinks = show.guests.map(g =>
-          g.x_url
-            ? `<a href="${g.x_url}" target="_blank" rel="noopener">${g.name}</a>`
-            : g.name
-        ).join(' / ');
-        guestsHTML = `<p class="schedule-detail__guests">GUEST: ${guestLinks}</p>`;
+        const names = show.guests.map(g => g.name).join(' / ');
+        guestsHTML = `<p class="schedule-detail__guests">Guest: ${names}</p>`;
       }
       if (SHOW_ZEPP_GUESTS && show.solo) {
         guestsHTML = '<p class="schedule-detail__guests" style="color: var(--color-accent);">ONE MAN LIVE</p>';
@@ -824,17 +876,25 @@
   /* -----------------------------------------
      10. INTERSECTION OBSERVER (fade-item)
      ----------------------------------------- */
+  let fadeObserver = null;
+
   function initFadeObserver() {
-    const observer = new IntersectionObserver((entries) => {
+    fadeObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
+          fadeObserver.unobserve(entry.target);
         }
       });
     }, { threshold: 0.15 });
 
-    document.querySelectorAll('.fade-item').forEach(el => observer.observe(el));
+    document.querySelectorAll('.fade-item').forEach(el => fadeObserver.observe(el));
+  }
+
+  // 動的生成された fade-item を後から observe する
+  function observeNewFadeItems(root) {
+    if (!fadeObserver) return;
+    (root || document).querySelectorAll('.fade-item:not(.is-visible)').forEach(el => fadeObserver.observe(el));
   }
 
   /* -----------------------------------------
