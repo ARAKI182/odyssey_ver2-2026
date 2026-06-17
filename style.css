@@ -765,6 +765,22 @@ ul, ol {
   margin-top: 4px;
 }
 
+/* FINAL バッジ — ツアー最終公演用 */
+.schedule__final-badge {
+  display: inline-block;
+  font-family: var(--font-heading-en);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: #ffffff;
+  background: linear-gradient(135deg, #C9A84C 0%, #8C6F2A 100%);
+  padding: 3px 12px;
+  border-radius: 2px;
+  margin-top: 4px;
+  margin-left: 6px;
+  box-shadow: 0 0 8px rgba(201, 168, 76, 0.45);
+}
+
 /* SOLD OUT バッジ — 右上に被せる斜めスタンプ風 */
 .schedule__item {
   position: relative;

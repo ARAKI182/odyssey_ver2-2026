@@ -78,6 +78,12 @@
       soloHTML = '<span class="schedule__solo-badge">ONE MAN</span>';
     }
 
+    // FINAL バッジ — ツアー最終公演（ゲスト解禁と同じタイミングで出す）
+    let finalHTML = '';
+    if (SHOW_ZEPP_GUESTS && show.final) {
+      finalHTML = '<span class="schedule__final-badge">FINAL</span>';
+    }
+
     // SOLD OUT バッジ
     const soldoutHTML = show.status === 'soldout'
       ? '<span class="schedule__soldout-badge">SOLD OUT</span>'
@@ -93,6 +99,7 @@
         <span class="schedule__venue">${show.venue}</span>
         ${guestsHTML}
         ${soloHTML}
+        ${finalHTML}
       </div>
       <div class="schedule__time-col">
         OPEN ${show.open || '—'} / START ${show.start || '—'}
@@ -169,7 +176,8 @@
 
       let bodyHTML = '';
       if (isSolo) {
-        bodyHTML = '<div class="guest-card__solo-mark">ONE MAN LIVE</div>';
+        const finalLabel = show.final ? ' &nbsp;/&nbsp; FINAL' : '';
+        bodyHTML = `<div class="guest-card__solo-mark">ONE MAN LIVE${finalLabel}</div>`;
       } else if (show.guests && show.guests.length > 0) {
         const xIconSVG = '<svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>';
         bodyHTML = '<div class="guest-card__people">'
@@ -225,7 +233,10 @@
         guestsHTML = `<p class="schedule-detail__guests">Guest: ${names}</p>`;
       }
       if (SHOW_ZEPP_GUESTS && show.solo) {
-        guestsHTML = '<p class="schedule-detail__guests" style="color: var(--color-accent);">ONE MAN LIVE</p>';
+        const finalLabel = show.final ? ' / FINAL' : '';
+        guestsHTML = `<p class="schedule-detail__guests" style="color: var(--color-accent);">ONE MAN LIVE${finalLabel}</p>`;
+      } else if (SHOW_ZEPP_GUESTS && show.final) {
+        guestsHTML += '<p class="schedule-detail__guests" style="color: var(--color-accent);">FINAL</p>';
       }
 
       let bandHTML = '';
