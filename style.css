@@ -2102,6 +2102,101 @@ a.guest-card__name:hover {
 }
 
 /* -----------------------------------------
+   11a. MOVIE カルーセル
+   ----------------------------------------- */
+.movie-carousel {
+  position: relative;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 clamp(36px, 6vw, 56px);
+}
+
+.movie-carousel__viewport {
+  position: relative;
+  overflow: hidden;
+}
+
+.movie-carousel__track {
+  display: flex;
+  width: 100%;
+  transition: transform 0.5s cubic-bezier(0.22, 0.8, 0.2, 1);
+  will-change: transform;
+}
+
+.movie-carousel__track .movie-item {
+  flex: 0 0 100%;
+  min-width: 0;
+  padding: 0 0.25rem;
+  box-sizing: border-box;
+}
+
+.movie-carousel__nav {
+  position: absolute;
+  top: clamp(60px, 13vw, 110px);
+  width: clamp(32px, 4.5vw, 40px);
+  height: clamp(32px, 4.5vw, 40px);
+  background: rgba(12, 10, 15, 0.75);
+  border: 1px solid rgba(201, 168, 76, 0.45);
+  border-radius: 50%;
+  color: var(--color-accent);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  z-index: 2;
+}
+
+.movie-carousel__nav:hover {
+  background: rgba(201, 168, 76, 0.15);
+  border-color: var(--color-accent);
+  transform: scale(1.06);
+}
+
+.movie-carousel__nav:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.movie-carousel__nav--prev { left: 0; }
+.movie-carousel__nav--next { right: 0; }
+
+.movie-carousel__nav svg {
+  width: 50%;
+  height: 50%;
+}
+
+.movie-carousel__dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 1.4rem;
+}
+
+.movie-carousel__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid rgba(201, 168, 76, 0.6);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.movie-carousel__dot[aria-selected="true"] {
+  background: var(--color-accent);
+  transform: scale(1.2);
+}
+
+@media (min-width: 768px) {
+  .movie-carousel {
+    max-width: 880px;
+  }
+}
+
+/* -----------------------------------------
    11b. MOVIE (旧Carousel — 未使用、互換のため残置)
    ----------------------------------------- */
 .carousel {
@@ -2743,5 +2838,190 @@ a.guest-card__name:hover {
 @supports (-webkit-touch-callout: none) {
   body {
     background-attachment: scroll;
+  }
+}
+
+/* ============================================
+   EP「Any and All Wind」告知バナー
+   ============================================ */
+.ep-banner {
+  position: relative;
+  width: 100%;
+  padding: 0;
+  margin: 0 auto clamp(40px, 6vw, 56px);
+  display: flex;
+  justify-content: center;
+}
+
+.ep-banner__link {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 1200 / 630;
+  text-decoration: none;
+  color: inherit;
+  isolation: isolate;
+  border-radius: 6px;
+}
+
+.ep-banner__bg,
+.ep-banner__overlay {
+  border-radius: 6px;
+}
+
+.ep-banner__bg {
+  position: absolute;
+  inset: 0;
+  background: url('img/ep_banner.jpg') center center / cover no-repeat;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  z-index: 0;
+}
+
+.ep-banner__link:hover .ep-banner__bg {
+  transform: scale(1.04);
+}
+
+.ep-banner__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(8, 6, 4, 0.55) 0%,
+    rgba(8, 6, 4, 0.35) 50%,
+    rgba(8, 6, 4, 0.7) 100%
+  );
+  z-index: 1;
+}
+
+.ep-banner__content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: clamp(6px, 1vw, 10px);
+  padding: clamp(8px, 2vw, 16px) clamp(12px, 3vw, 24px) clamp(4px, 1vw, 6px);
+}
+
+.ep-banner__release {
+  font-family: var(--font-heading-en);
+  font-size: clamp(0.85rem, 2.2vw, 1.4rem);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #ffffff;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+  margin: 0;
+  text-align: center;
+  transform: translateY(20px);
+}
+
+.ep-banner__dow {
+  font-size: 0.7em;
+  letter-spacing: 0.08em;
+  margin: 0 0.3em;
+  opacity: 0.85;
+}
+
+/* マルキーボタン（無限横スクロール） */
+.ep-banner__cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: 88%;
+  max-width: 320px;
+  height: clamp(34px, 4.5vw, 42px);
+  border-radius: 999px;
+  transform: translateY(20px);
+  background: rgba(255, 255, 255, 0.96);
+  color: #0b0805;
+  overflow: hidden;
+  box-shadow:
+    0 4px 24px rgba(201, 168, 76, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.ep-banner__link:hover .ep-banner__cta {
+  transform: translateY(18px);
+  box-shadow:
+    0 8px 32px rgba(201, 168, 76, 0.55),
+    0 0 0 1px rgba(255, 255, 255, 0.7) inset;
+}
+
+.ep-banner__marquee {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  white-space: nowrap;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    #000 6%,
+    #000 94%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    #000 6%,
+    #000 94%,
+    transparent 100%
+  );
+}
+
+.ep-banner__marquee-track {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  animation: epMarquee 18s linear infinite;
+}
+
+.ep-banner__marquee-item {
+  font-family: var(--font-heading-en);
+  font-size: clamp(0.78rem, 1.3vw, 0.95rem);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  padding: 0 1.2em;
+  position: relative;
+}
+
+.ep-banner__marquee-item::after {
+  content: '↗';
+  position: absolute;
+  right: -0.4em;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.85em;
+  color: var(--color-accent);
+  letter-spacing: 0;
+  font-weight: 700;
+}
+
+@keyframes epMarquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-100%); }
+}
+
+.ep-banner__link:hover .ep-banner__marquee-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ep-banner__marquee-track {
+    animation: none;
+  }
+  .ep-banner__bg {
+    transition: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .ep-banner__link {
+    max-width: 320px;
   }
 }

@@ -472,48 +472,48 @@
      8. MOVIE CAROUSEL
      ----------------------------------------- */
   function initMovieCarousel() {
-    const track = document.getElementById('movieTrack');
-    const dotsContainer = document.getElementById('movieDots');
     const carousel = document.getElementById('movieCarousel');
-    if (!track || !carousel) return;
+    const track = document.getElementById('movieTrack');
+    if (!carousel || !track) return;
 
-    const slides = track.querySelectorAll('.carousel__slide');
+    const slides = track.querySelectorAll('.movie-item');
+    const prevBtn = carousel.querySelector('.movie-carousel__nav--prev');
+    const nextBtn = carousel.querySelector('.movie-carousel__nav--next');
+    const dots = carousel.querySelectorAll('.movie-carousel__dot');
+
     if (slides.length <= 1) {
-      carousel.querySelectorAll('.carousel__arrow').forEach(a => a.style.display = 'none');
+      if (prevBtn) prevBtn.style.display = 'none';
+      if (nextBtn) nextBtn.style.display = 'none';
+      dots.forEach(d => d.style.display = 'none');
       return;
     }
 
     let current = 0;
 
-    slides.forEach((_, i) => {
-      const dot = document.createElement('button');
-      dot.className = 'carousel__dot' + (i === 0 ? ' is-active' : '');
-      dot.setAttribute('aria-label', `Slide ${i + 1}`);
-      dot.addEventListener('click', () => goTo(i));
-      dotsContainer.appendChild(dot);
-    });
-
     function goTo(index) {
       current = Math.max(0, Math.min(index, slides.length - 1));
       track.style.transform = `translateX(-${current * 100}%)`;
-      dotsContainer.querySelectorAll('.carousel__dot').forEach((dot, i) => {
-        dot.classList.toggle('is-active', i === current);
+      dots.forEach((dot, i) => {
+        dot.setAttribute('aria-selected', i === current ? 'true' : 'false');
       });
+      if (prevBtn) prevBtn.disabled = current === 0;
+      if (nextBtn) nextBtn.disabled = current === slides.length - 1;
     }
 
-    carousel.querySelector('.carousel__arrow--prev')
-      .addEventListener('click', () => goTo(current - 1));
-    carousel.querySelector('.carousel__arrow--next')
-      .addEventListener('click', () => goTo(current + 1));
+    if (prevBtn) prevBtn.addEventListener('click', () => goTo(current - 1));
+    if (nextBtn) nextBtn.addEventListener('click', () => goTo(current + 1));
+    dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
 
     let touchStartX = 0;
     let touchDeltaX = 0;
-    track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; touchDeltaX = 0; }, { passive: true });
     track.addEventListener('touchmove', e => { touchDeltaX = e.touches[0].clientX - touchStartX; }, { passive: true });
     track.addEventListener('touchend', () => {
       if (Math.abs(touchDeltaX) > 50) goTo(current + (touchDeltaX > 0 ? -1 : 1));
       touchDeltaX = 0;
     });
+
+    goTo(0);
   }
 
   /* -----------------------------------------

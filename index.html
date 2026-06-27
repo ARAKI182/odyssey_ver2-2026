@@ -297,6 +297,43 @@
   <section class="section" id="goods">
     <div class="section__inner">
       <h2 class="section__heading reveal-heading">GOODS</h2>
+
+      <!-- EP「Any and All Wind」告知バナー -->
+      <div class="ep-banner fade-item" id="ep-banner" aria-label="新EP告知">
+        <a class="ep-banner__link" href="https://araki-live.jp/aaaw/" target="_blank" rel="noopener">
+          <div class="ep-banner__bg" aria-hidden="true"></div>
+          <div class="ep-banner__overlay" aria-hidden="true"></div>
+          <div class="ep-banner__content">
+            <p class="ep-banner__release">2026.07.15<span class="ep-banner__dow">(Wed)</span> Release</p>
+            <span class="ep-banner__cta">
+              <span class="ep-banner__marquee" aria-hidden="true">
+                <span class="ep-banner__marquee-track">
+                  <span class="ep-banner__marquee-item">EP特設サイト</span>
+                  <span class="ep-banner__marquee-item">EP特設サイト</span>
+                  <span class="ep-banner__marquee-item">EP特設サイト</span>
+                  <span class="ep-banner__marquee-item">EP特設サイト</span>
+                  <span class="ep-banner__marquee-item">EP特設サイト</span>
+                  <span class="ep-banner__marquee-item">EP特設サイト</span>
+                  <span class="ep-banner__marquee-item">EP特設サイト</span>
+                  <span class="ep-banner__marquee-item">EP特設サイト</span>
+                </span>
+                <span class="ep-banner__marquee-track" aria-hidden="true">
+                  <span class="ep-banner__marquee-item">EP特設サイト</span>
+                  <span class="ep-banner__marquee-item">EP特設サイト</span>
+                  <span class="ep-banner__marquee-item">EP特設サイト</span>
+                  <span class="ep-banner__marquee-item">EP特設サイト</span>
+                  <span class="ep-banner__marquee-item">EP特設サイト</span>
+                  <span class="ep-banner__marquee-item">EP特設サイト</span>
+                  <span class="ep-banner__marquee-item">EP特設サイト</span>
+                  <span class="ep-banner__marquee-item">EP特設サイト</span>
+                </span>
+              </span>
+              <span class="visually-hidden">EP特設サイトへ</span>
+            </span>
+          </div>
+        </a>
+      </div>
+
       <div class="goods__placeholder fade-item">
         <p class="goods__coming-soon">COMING SOON</p>
       </div>
@@ -306,37 +343,72 @@
   <section class="section" id="movie">
     <div class="section__inner">
       <h2 class="section__heading reveal-heading">MOVIE</h2>
-      <div class="movie-grid movie-grid--two fade-item">
-        <div class="movie-item">
-          <div class="movie-frame">
-            <iframe
-              src="https://www.youtube.com/embed/ElufWTpeXUs"
-              title="あらき - Qualia [Official Music Video]"
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen></iframe>
-          </div>
-          <div class="movie-meta">
-            <span class="movie-label">New Release</span>
-            <h3 class="movie-title">Qualia</h3>
-            <p class="movie-sub">Official Music Video</p>
+      <div class="movie-carousel fade-item" id="movieCarousel">
+        <button class="movie-carousel__nav movie-carousel__nav--prev" type="button" aria-label="前の動画">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+        </button>
+        <div class="movie-carousel__viewport">
+          <div class="movie-carousel__track" id="movieTrack">
+            <div class="movie-item">
+              <div class="movie-frame">
+                <iframe
+                  src="https://www.youtube.com/embed/XCbkbXYIuiI"
+                  title="あらき - アノニマスヒーロー [Official Music Video]"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen></iframe>
+              </div>
+              <div class="movie-meta">
+                <span class="movie-label">New Release</span>
+                <h3 class="movie-title">アノニマスヒーロー</h3>
+                <p class="movie-sub">Official Music Video</p>
+              </div>
+            </div>
+
+            <div class="movie-item">
+              <div class="movie-frame">
+                <iframe
+                  src="https://www.youtube.com/embed/ElufWTpeXUs"
+                  title="あらき - Qualia [Official Music Video]"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen></iframe>
+              </div>
+              <div class="movie-meta">
+                <span class="movie-label">New Release</span>
+                <h3 class="movie-title">Qualia</h3>
+                <p class="movie-sub">Official Music Video</p>
+              </div>
+            </div>
+
+            <div class="movie-item">
+              <div class="movie-frame">
+                <iframe
+                  src="https://www.youtube.com/embed/LYW-qOvpYWI"
+                  title="あらき - モラトリアム・ディシジョン [Official Music Video]"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen></iframe>
+              </div>
+              <div class="movie-meta">
+                <span class="movie-label">New Release</span>
+                <h3 class="movie-title">モラトリアム・ディシジョン</h3>
+                <p class="movie-sub">Official Music Video</p>
+              </div>
+            </div>
           </div>
         </div>
-
-        <div class="movie-item">
-          <div class="movie-frame">
-            <iframe
-              src="https://www.youtube.com/embed/LYW-qOvpYWI"
-              title="あらき - モラトリアム・ディシジョン [Official Music Video]"
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen></iframe>
-          </div>
-          <div class="movie-meta">
-            <span class="movie-label">New Release</span>
-            <h3 class="movie-title">モラトリアム・ディシジョン</h3>
-            <p class="movie-sub">Official Music Video</p>
-          </div>
+        <button class="movie-carousel__nav movie-carousel__nav--next" type="button" aria-label="次の動画">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </button>
+        <div class="movie-carousel__dots" role="tablist" aria-label="動画選択">
+          <button class="movie-carousel__dot" type="button" role="tab" aria-label="1" aria-selected="true"></button>
+          <button class="movie-carousel__dot" type="button" role="tab" aria-label="2"></button>
+          <button class="movie-carousel__dot" type="button" role="tab" aria-label="3"></button>
         </div>
       </div>
     </div>
