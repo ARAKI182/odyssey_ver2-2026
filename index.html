@@ -76,6 +76,18 @@
     <a href="#" class="header__logo" id="logoHome" aria-label="TOP">
       <img src="img/logo-symbol.png" alt="ODYSSEY" class="header__logo-img">
     </a>
+    <nav class="header__nav" aria-label="セクションメニュー">
+      <ul class="header__nav-list">
+        <li><a href="#news" class="header__nav-link">NEWS</a></li>
+        <li><a href="#schedule" class="header__nav-link">SCHEDULE</a></li>
+        <li><a href="#guest" class="header__nav-link">GUEST</a></li>
+        <li><a href="#ticket" class="header__nav-link">TICKET</a></li>
+        <li><a href="#goods" class="header__nav-link">GOODS</a></li>
+        <li><a href="#movie" class="header__nav-link">MOVIE</a></li>
+        <li><a href="#fc" class="header__nav-link">FC</a></li>
+        <li><a href="#journal" class="header__nav-link">JOURNAL</a></li>
+      </ul>
+    </nav>
     <button class="header__hamburger" id="hamburger" aria-label="メニュー" aria-expanded="false">
       <span class="hamburger__line"></span>
       <span class="hamburger__line"></span>
@@ -119,11 +131,20 @@
     </div>
   </section>
 
-  <section class="section" id="news">
+  <section class="section section--collapsible" id="news">
     <div class="section__inner">
-      <h2 class="section__heading reveal-heading">NEWS</h2>
+      <h2 class="section__heading reveal-heading">
+        <button class="section__toggle" aria-expanded="true" aria-controls="newsCollapse">
+          NEWS
+          <span class="section__toggle-icon" aria-hidden="true"></span>
+        </button>
+      </h2>
+      <div class="section__collapse" id="newsCollapse">
+        <div class="section__collapse-inner">
       <div class="news__scroll-box fade-item">
         <ul class="news__list" id="newsList"></ul>
+      </div>
+        </div>
       </div>
     </div>
   </section>
@@ -138,12 +159,21 @@
     </div>
   </div>
 
-  <section class="section" id="schedule">
+  <section class="section section--collapsible" id="schedule">
     <div class="section__inner">
-      <h2 class="section__heading reveal-heading">SCHEDULE</h2>
-      <ul class="schedule__list stagger-list" id="scheduleList">
-        <!-- JS で動的生成 -->
-      </ul>
+      <h2 class="section__heading reveal-heading">
+        <button class="section__toggle" aria-expanded="true" aria-controls="scheduleCollapse">
+          SCHEDULE
+          <span class="section__toggle-icon" aria-hidden="true"></span>
+        </button>
+      </h2>
+      <div class="section__collapse" id="scheduleCollapse">
+        <div class="section__collapse-inner">
+          <ul class="schedule__list stagger-list" id="scheduleList">
+            <!-- JS で動的生成 -->
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -155,19 +185,35 @@
     </div>
   </div>
 
-  <section class="section" id="guest">
+  <section class="section section--collapsible" id="guest">
     <div class="section__inner">
-      <h2 class="section__heading reveal-heading">GUEST</h2>
-      <p class="guest__lead fade-item">Zepp公演 出演ゲスト</p>
-      <div class="guest__list fade-item" id="guestList">
-        <!-- JS で動的生成 -->
+      <h2 class="section__heading reveal-heading">
+        <button class="section__toggle" aria-expanded="false" aria-controls="guestCollapse">
+          GUEST
+          <span class="section__toggle-icon" aria-hidden="true"></span>
+        </button>
+      </h2>
+      <div class="section__collapse is-collapsed" id="guestCollapse">
+        <div class="section__collapse-inner">
+          <p class="guest__lead fade-item">Zepp公演 出演ゲスト</p>
+          <div class="guest__list fade-item" id="guestList">
+            <!-- JS で動的生成 -->
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="section" id="ticket">
+  <section class="section section--collapsible" id="ticket">
     <div class="section__inner">
-      <h2 class="section__heading reveal-heading">TICKET</h2>
+      <h2 class="section__heading reveal-heading">
+        <button class="section__toggle" aria-expanded="true" aria-controls="ticketCollapse">
+          TICKET
+          <span class="section__toggle-icon" aria-hidden="true"></span>
+        </button>
+      </h2>
+      <div class="section__collapse" id="ticketCollapse">
+        <div class="section__collapse-inner">
 
       <div class="accordion fade-item">
         <button class="accordion__trigger" aria-expanded="false">
@@ -307,13 +353,22 @@
         </ul>
       </div>
 
+        </div>
+      </div>
     </div>
   </section>
 
 
-  <section class="section" id="goods">
+  <section class="section section--collapsible" id="goods">
     <div class="section__inner">
-      <h2 class="section__heading reveal-heading">GOODS</h2>
+      <h2 class="section__heading reveal-heading">
+        <button class="section__toggle" aria-expanded="true" aria-controls="goodsCollapse">
+          GOODS
+          <span class="section__toggle-icon" aria-hidden="true"></span>
+        </button>
+      </h2>
+      <div class="section__collapse" id="goodsCollapse">
+        <div class="section__collapse-inner">
 
       <!-- EP「Any and All Wind」告知バナー -->
       <div class="ep-banner fade-item" id="ep-banner" aria-label="新EP告知">
@@ -351,15 +406,181 @@
         </a>
       </div>
 
-      <div class="goods__placeholder fade-item">
-        <p class="goods__coming-soon">COMING SOON</p>
+      <!-- ① 見出し＋リード -->
+      <div class="goods-lead fade-item">
+        <p class="goods-lead__title">ARAKI ライブツアー2026 &ldquo;LIVE ARK ODYSSEY&rdquo;</p>
+        <p class="goods-lead__body">オフィシャルグッズの販売詳細が決定いたしました！</p>
+      </div>
+
+      <!-- ② グッズ画像 -->
+      <figure class="goods-lineup fade-item">
+        <img src="img/goods-lineup.jpg" alt="LIVE ARK ODYSSEY 2026 オフィシャルグッズラインナップ" loading="lazy">
+      </figure>
+
+      <!-- ③ 画像DLボタン -->
+      <div class="goods-dl fade-item">
+        <a class="goods-dl__btn" href="img/goods-lineup.jpg" target="_blank" rel="noopener">
+          <span>グッズ画像ダウンロードはこちら</span>
+        </a>
+        <p class="goods-dl__hint">別画面で開いた画像を長押し／右クリックで保存できます</p>
+      </div>
+
+      <!-- ⑤ 販売場所／時間 -->
+      <div class="goods-sale fade-item">
+        <h3 class="goods-block__heading">販売場所／時間</h3>
+        <p class="goods-sale__coming">COMING SOON</p>
+      </div>
+
+      <!-- ⑥ 注意事項 -->
+      <div class="accordion accordion--notes fade-item">
+        <button class="accordion__trigger accordion__trigger--notes" aria-expanded="false">
+          <span>物販に関する注意事項</span>
+          <span class="accordion__icon"></span>
+        </button>
+        <div class="accordion__content">
+          <div class="accordion__inner">
+            <ul class="goods-notes__list">
+              <li>表示価格は税込です。</li>
+              <li>画像はイメージです。商品のデザイン／仕様は変更となる場合がございます。</li>
+              <li>イベント販売商品のため数に限りがございます。品切れの際はご容赦ください。</li>
+              <li>お支払い方法は現金、クレジットカード、交通系IC、iD、QUICPay、PayPayがご利用いただけます。</li>
+              <li>クレジットカードのお支払い回数は一括のみとなります。</li>
+              <li>キャッシュレス決済は当日の電波状況によってはご利用できない可能性がございます。</li>
+              <li>不良品対応は購入当日の会場グッズ窓口のみとなります。</li>
+              <li>商品お持ち帰り用袋のお渡しはありません。</li>
+              <li>ご購入品のお渡し間違い、釣り銭不足などの不手際は無いように心掛けて販売を行いますが、必ず購入時に販売員とお客様で内容のご確認をお願いいたします。購入後のお申し出にはご対応いたしかねます。</li>
+              <li>待機列ではスタッフの指示に従ってください。</li>
+              <li>待機列への割り込みは禁止となります。お連れ様が先に並んでいても途中合流は禁止とさせていただきます。</li>
+              <li>トイレなどで列を離れる際には列の前後の方に声をかけ、必ず了承を得てください。</li>
+              <li>列を離れる際には荷物を置いたままにはしないでください。</li>
+              <li>貴重品は個人の責任において管理をお願いいたします。</li>
+              <li>盗難・紛失等は責任を負いかねますので十分にご注意ください。</li>
+              <li>その他、ルール違反や周りの迷惑になる行為があった場合は、販売をお断りさせていただく場合がございます。</li>
+            </ul>
+
+            <h4 class="goods-notes__sub">【会場物販での購入制限について】</h4>
+            <p class="goods-notes__lead">お一人様1会計につき</p>
+            <ul class="goods-notes__list">
+              <li>ご当地ピンバッジ（全20種・各会場限定販売）：2点まで</li>
+              <li>チェキ風コレクション Vol.3（全13種・ランダム）：40点まで</li>
+              <li>上記以外のアイテム：制限なし</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ⑦ 会場限定チェキコレ特典 -->
+      <div class="goods-special fade-item">
+        <div class="goods-special__ribbon" aria-hidden="true">SPECIAL</div>
+        <h3 class="goods-block__heading">会場限定 チェキ風コレクション特典</h3>
+        <p class="goods-special__lead">各公演日ごとに<strong>10名様</strong>へ、終演後のあらきとの<strong>Meet&amp;Greet</strong>にご参加いただける<em>当選券（当たり券）</em>を、チェキ風コレクションカードへランダム封入しております。</p>
+        <p class="goods-special__lead">さらに各公演日ごとに<strong>2名様</strong>を、本番ステージ上でのチケット抽選でMeet&amp;Greetにご招待いたします。</p>
+
+        <div class="goods-special__note">
+          <h4 class="goods-special__note-title">ご参加にあたって</h4>
+          <ul class="goods-notes__list">
+            <li>当たり券はご購入いただいたチェキ風コレクションカードの中にランダムで封入されています。その場でご確認ください。</li>
+            <li>当たり券は公演当日限り有効です。後日の開封・別公演でのご使用はできません。</li>
+            <li>当たり券が出たお客様は、終演後のお見送り会終了後、当日ご案内するMeet&amp;Greet受付まで速やかにお越しください。受付はお見送り会終了から5分後を目安に締め切らせていただきます。締め切り後のご参加は対応いたしかねます。</li>
+            <li>受付では当たり券をお預かり（回収）いたします。</li>
+            <li>当たり券はMeet&amp;Greetご参加の権利です。チェキ風コレクションカード現品との引き換え・補填はございません。</li>
+          </ul>
+          <p class="goods-special__aside">※別途、ランダムであらきの直筆サイン入りカードも封入されています。</p>
+        </div>
+
+        <div class="goods-special__mg">
+          <h4 class="goods-special__mg-title">【Meet&amp;Greet（ミート＆グリート）とは？】</h4>
+          <p class="goods-special__mg-body">終演後、所定の場所であらきと1対1で&quot;サシ&quot;でお話しいただけるイベントです。<br>何を話すかはあなた次第。お待ちしております。</p>
+        </div>
+      </div>
+
+      <!-- ⑧ スタンプカード -->
+      <div class="goods-stamp fade-item">
+        <div class="goods-stamp__ribbon" aria-hidden="true">STAMP CARD</div>
+        <h3 class="goods-block__heading">スタンプカード</h3>
+        <p class="goods-stamp__lead">LIVE ARK ODYSSEY オフィシャルグッズ（EP「ANY AND ALL WIND」は含みません）を<strong>5,000円以上</strong>ご購入で、スタンプカードを配布！</p>
+        <p class="goods-stamp__lead">以降5,000円ごとにスタンプを1個押印。貯まったマス目に応じて、限定特典をプレゼントいたします。</p>
+
+        <ul class="goods-stamp__rewards">
+          <li>
+            <span class="goods-stamp__count">3<small>マス</small></span>
+            <span class="goods-stamp__gift">限定缶バッジセット</span>
+          </li>
+          <li>
+            <span class="goods-stamp__count">5<small>マス</small></span>
+            <span class="goods-stamp__gift">グラディエーターアクスタ</span>
+          </li>
+          <li>
+            <span class="goods-stamp__count">10<small>マス</small></span>
+            <span class="goods-stamp__gift">撮り下ろしチェキ</span>
+          </li>
+        </ul>
+
+        <div class="accordion accordion--notes fade-item">
+          <button class="accordion__trigger accordion__trigger--notes" aria-expanded="false">
+            <span>スタンプカードに関する注意事項</span>
+            <span class="accordion__icon"></span>
+          </button>
+          <div class="accordion__content">
+            <div class="accordion__inner">
+              <ul class="goods-notes__list">
+                <li>スタンプの付与は「物販購入5,000円ごと」です（会計ごとの計算・合算不可）。</li>
+                <li>スタンプカードは1会計5,000円以上ご購入のお客様に配布されます。</li>
+                <li>押印辞退も可能ですが、後付けはできません。</li>
+                <li>カードは何枚でもお持ちいただけますが、複数カードのスタンプを1枚に合算することはできません。</li>
+                <li>カードはツアー期間中のみ有効です。再発行・後追い反映はできません。</li>
+                <li>カード・特典の譲渡・転売は禁止です。</li>
+                <li>EC（事前通販）ご購入分のスタンプは、押印済みカードを商品に同梱してお届けします。</li>
+                <li>EC同梱カードは会場へお忘れなくお持ちください（忘れ・紛失分の後追い反映はできません）。</li>
+                <li>特典の引き換えはツアー期間中いつでも可能です（原則、各会場の物販スペースでの引き換えとなります）。達成後、カードを物販スペースまでお持ちください。</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ⑨ 事前通販ボタン -->
+      <a class="goods-store fade-item" href="https://araki-store.jp/" target="_blank" rel="noopener" aria-label="事前通販 ARAKI STORE へ">
+        <span class="goods-store__badge">事前通販 受付期間</span>
+        <span class="goods-store__period">7/11(土)20:00 〜 7/20(月)23:59</span>
+        <span class="goods-store__cta">
+          <span class="goods-store__marquee" aria-hidden="true">
+            <span class="goods-store__marquee-track">
+              <span class="goods-store__marquee-item">ARAKI STORE</span>
+              <span class="goods-store__marquee-item">ARAKI STORE</span>
+              <span class="goods-store__marquee-item">ARAKI STORE</span>
+              <span class="goods-store__marquee-item">ARAKI STORE</span>
+              <span class="goods-store__marquee-item">ARAKI STORE</span>
+              <span class="goods-store__marquee-item">ARAKI STORE</span>
+            </span>
+            <span class="goods-store__marquee-track" aria-hidden="true">
+              <span class="goods-store__marquee-item">ARAKI STORE</span>
+              <span class="goods-store__marquee-item">ARAKI STORE</span>
+              <span class="goods-store__marquee-item">ARAKI STORE</span>
+              <span class="goods-store__marquee-item">ARAKI STORE</span>
+              <span class="goods-store__marquee-item">ARAKI STORE</span>
+              <span class="goods-store__marquee-item">ARAKI STORE</span>
+            </span>
+          </span>
+          <span class="visually-hidden">ARAKI STORE（事前通販）へ</span>
+        </span>
+      </a>
+
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="section" id="movie">
+  <section class="section section--collapsible" id="movie">
     <div class="section__inner">
-      <h2 class="section__heading reveal-heading">MOVIE</h2>
+      <h2 class="section__heading reveal-heading">
+        <button class="section__toggle" aria-expanded="true" aria-controls="movieCollapse">
+          MOVIE
+          <span class="section__toggle-icon" aria-hidden="true"></span>
+        </button>
+      </h2>
+      <div class="section__collapse" id="movieCollapse">
+        <div class="section__collapse-inner">
       <div class="movie-carousel fade-item" id="movieCarousel">
         <button class="movie-carousel__nav movie-carousel__nav--prev" type="button" aria-label="前の動画">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -428,12 +649,21 @@
           <button class="movie-carousel__dot" type="button" role="tab" aria-label="3"></button>
         </div>
       </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section class="section" id="fc">
+  <section class="section section--collapsible" id="fc">
     <div class="section__inner">
-      <h2 class="section__heading reveal-heading">FANCLUB</h2>
+      <h2 class="section__heading reveal-heading">
+        <button class="section__toggle" aria-expanded="false" aria-controls="fcCollapse">
+          FANCLUB
+          <span class="section__toggle-icon" aria-hidden="true"></span>
+        </button>
+      </h2>
+      <div class="section__collapse is-collapsed" id="fcCollapse">
+        <div class="section__collapse-inner">
       <div class="fc-panel fade-item">
         <div class="fc-panel__header">
           <span class="fc-panel__seal">FANCLUB MEMBERS ONLY</span>
@@ -481,15 +711,26 @@
           </div>
         </div>
       </div>
+        </div>
+      </div>
     </div>
   </section>
 
 
-  <section class="section" id="journal">
+  <section class="section section--collapsible" id="journal">
     <div class="section__inner">
-      <h2 class="section__heading reveal-heading">JOURNAL</h2>
+      <h2 class="section__heading reveal-heading">
+        <button class="section__toggle" aria-expanded="true" aria-controls="journalCollapse">
+          JOURNAL
+          <span class="section__toggle-icon" aria-hidden="true"></span>
+        </button>
+      </h2>
+      <div class="section__collapse" id="journalCollapse">
+        <div class="section__collapse-inner">
       <div class="journal__sections fade-item" id="journalSections">
         <!-- JS で動的生成 -->
+      </div>
+        </div>
       </div>
     </div>
   </section>
@@ -584,6 +825,9 @@
 
       <a href="https://araki-axiz.com" target="_blank" rel="noopener" class="footer__fc-link">
         OFFICIAL FANCLUB
+      </a>
+      <a href="https://araki-live.jp" target="_blank" rel="noopener" class="footer__fc-link">
+        OFFICIAL PORTAL SITE
       </a>
       <div class="footer__sns">
         <a href="https://www.instagram.com/az_araki_ig/" target="_blank" rel="noopener" aria-label="Instagram" class="footer__sns-link">

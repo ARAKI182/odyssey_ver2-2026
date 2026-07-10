@@ -377,6 +377,42 @@
   /* -----------------------------------------
      6. ACCORDION
      ----------------------------------------- */
+  /* 折りたたみセクション（SCHEDULE / GUEST） */
+  function initSectionCollapse() {
+    const toggles = document.querySelectorAll('.section__toggle');
+    if (!toggles.length) return;
+
+    function setExpanded(toggle, expanded) {
+      toggle.setAttribute('aria-expanded', String(expanded));
+      const target = document.getElementById(toggle.getAttribute('aria-controls'));
+      if (target) target.classList.toggle('is-collapsed', !expanded);
+      // 開閉で高さが変わるので ScrollTrigger を再計算
+      if (window.ScrollTrigger) {
+        setTimeout(() => window.ScrollTrigger.refresh(), 600);
+      }
+    }
+
+    toggles.forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        const expanded = toggle.getAttribute('aria-expanded') === 'true';
+        setExpanded(toggle, !expanded);
+      });
+    });
+
+    // ナビ（PC/オーバーレイ）からのアンカー遷移時は自動で開く
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', () => {
+        const id = link.getAttribute('href').slice(1);
+        const section = document.getElementById(id);
+        if (!section) return;
+        const toggle = section.querySelector('.section__toggle');
+        if (toggle && toggle.getAttribute('aria-expanded') !== 'true') {
+          setExpanded(toggle, true);
+        }
+      });
+    });
+  }
+
   function initAccordions() {
     document.querySelectorAll('.accordion__trigger').forEach(trigger => {
       trigger.addEventListener('click', () => {
@@ -1026,6 +1062,7 @@
 
     // Interactions
     initHamburger();
+    initSectionCollapse();
     initAccordions();
     initNewsModal();
     initScheduleModal();

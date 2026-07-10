@@ -37,7 +37,7 @@
   --color-hover: rgba(255, 255, 255, 0.1);
 
   /* Spacing */
-  --section-pad-y: 120px;
+  --section-pad-y: 72px;
   --section-pad-x: 24px;
   --inner-max: 900px;
 
@@ -166,6 +166,66 @@ ul, ol {
 
 .header__logo:hover .header__logo-img {
   opacity: 1;
+}
+
+/* PC inline nav — 1000px以上でハンバーガーの代わりに表示 */
+.header__nav {
+  display: none;
+}
+
+@media (min-width: 1000px) {
+  .header__nav {
+    display: block;
+    margin-left: auto;
+    margin-right: 20px;
+  }
+
+  .header__nav-list {
+    display: flex;
+    gap: clamp(14px, 2vw, 28px);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .header__nav-link {
+    font-family: var(--font-heading-en);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: var(--color-text);
+    text-decoration: none;
+    padding: 6px 2px;
+    position: relative;
+    opacity: 0.8;
+    transition: opacity 0.2s ease, color 0.2s ease;
+  }
+
+  .header__nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: var(--color-accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s ease;
+  }
+
+  .header__nav-link:hover {
+    opacity: 1;
+    color: var(--color-accent);
+  }
+
+  .header__nav-link:hover::after {
+    transform: scaleX(1);
+  }
+
+  .header__hamburger {
+    display: none;
+  }
 }
 
 /* Hamburger */
@@ -458,12 +518,93 @@ ul, ol {
 
 .section__heading {
   font-family: var(--font-heading-en);
-  font-size: clamp(2.5rem, 8vw, 4rem);
+  font-size: clamp(2rem, 6.5vw, 3.2rem);
   font-weight: 900;
   letter-spacing: 0.15em;
-  margin-bottom: 56px;
   color: #f5d44b;
   will-change: clip-path;
+  /* 横幅いっぱいの帯（full-bleed） */
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  margin-bottom: 40px;
+  padding: 0.35em max(var(--section-pad-x), calc(50vw - var(--inner-max) / 2));
+  background: linear-gradient(
+    90deg,
+    rgba(201, 168, 76, 0.14) 0%,
+    rgba(201, 168, 76, 0.05) 55%,
+    transparent 100%
+  );
+  border-top: 1px solid rgba(201, 168, 76, 0.22);
+  border-bottom: 1px solid rgba(201, 168, 76, 0.22);
+}
+
+/* 折りたたみセクション（SCHEDULE / GUEST） */
+.section__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+}
+
+.section__toggle-icon {
+  position: relative;
+  flex: 0 0 auto;
+  width: 0.55em;
+  height: 0.55em;
+  margin-left: 0.5em;
+}
+
+.section__toggle-icon::before,
+.section__toggle-icon::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 3px;
+  background: var(--color-accent);
+  transform: translate(-50%, -50%);
+  transition: transform 0.3s ease;
+}
+
+.section__toggle-icon::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.section__toggle[aria-expanded="true"] .section__toggle-icon::after {
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+
+/* 折りたたみセクションは帯が境界を示すので余白を圧縮 */
+.section--collapsible {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.section--collapsible .section__heading {
+  margin-bottom: 0;
+}
+
+.section__collapse {
+  max-height: 9000px;
+  overflow: hidden;
+  transition: max-height 0.6s var(--ease-smooth);
+}
+
+.section__collapse.is-collapsed {
+  max-height: 0;
+}
+
+.section__collapse-inner {
+  padding-top: 36px;
 }
 
 /* -----------------------------------------
@@ -1672,6 +1813,502 @@ ul, ol {
 }
 
 /* -----------------------------------------
+   GOODS - 詳細ブロック群
+   ----------------------------------------- */
+
+/* 共通 見出し */
+.goods-block__heading {
+  font-family: var(--font-body-ja);
+  font-size: clamp(1.05rem, 3vw, 1.3rem);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--color-text);
+  text-align: center;
+  margin: 0 0 1.2rem;
+  position: relative;
+  padding-bottom: 0.7rem;
+}
+
+.goods-block__heading::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 44px;
+  height: 1px;
+  background: var(--color-accent);
+}
+
+/* ① 見出し＋リード */
+.goods-lead {
+  max-width: 720px;
+  margin: 0 auto 1.6rem;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.goods-lead__title {
+  font-family: var(--font-body-ja);
+  font-size: clamp(0.95rem, 2.4vw, 1.15rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+  margin: 0 0 0.8rem;
+  line-height: 1.5;
+}
+
+.goods-lead__body {
+  font-family: var(--font-body-ja);
+  font-size: clamp(0.92rem, 2.2vw, 1.05rem);
+  color: var(--color-text);
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* ② グッズラインナップ画像 */
+.goods-lineup {
+  margin: 0 auto 1.2rem;
+  max-width: 640px;
+  padding: 0 1rem;
+}
+
+.goods-lineup img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid rgba(201, 168, 76, 0.28);
+}
+
+/* ③ 画像DLボタン */
+.goods-dl {
+  text-align: center;
+  margin: 0 auto 2.2rem;
+  padding: 0 1rem;
+}
+
+.goods-dl__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.75rem 1.6rem;
+  border: 1px solid rgba(201, 168, 76, 0.6);
+  background: rgba(12, 10, 15, 0.4);
+  color: var(--color-accent);
+  font-family: var(--font-body-ja);
+  font-size: 0.88rem;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  border-radius: 3px;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.goods-dl__btn::before {
+  content: '⬇';
+  font-size: 0.9em;
+}
+
+.goods-dl__btn:hover {
+  background: rgba(201, 168, 76, 0.12);
+  border-color: var(--color-accent);
+  transform: translateY(-1px);
+}
+
+.goods-dl__hint {
+  font-size: 0.75rem;
+  color: var(--color-sub-text);
+  margin: 0.6rem 0 0;
+}
+
+/* ⑤ 販売場所／時間 */
+.goods-sale {
+  max-width: 720px;
+  margin: 0 auto 2.2rem;
+  padding: 1.8rem 1rem;
+  background: rgba(12, 10, 15, 0.4);
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  border-radius: 4px;
+  text-align: center;
+}
+
+.goods-sale__coming {
+  font-family: var(--font-heading-en);
+  font-size: clamp(1rem, 3vw, 1.4rem);
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  color: var(--color-sub-text);
+  margin: 0;
+}
+
+/* ⑥⑧ 注意事項アコーディオン */
+.accordion--notes {
+  max-width: 720px;
+  margin: 0 auto 2.2rem;
+}
+
+.accordion__trigger--notes {
+  background: rgba(12, 10, 15, 0.5);
+  border: 1px solid rgba(201, 168, 76, 0.25);
+}
+
+.goods-notes__list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+}
+
+.goods-notes__list li {
+  position: relative;
+  padding: 0.45rem 0 0.45rem 1.1rem;
+  font-size: 0.76rem;
+  line-height: 1.7;
+  color: var(--color-text);
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+}
+
+.goods-notes__list li:last-child {
+  border-bottom: 0;
+}
+
+.goods-notes__list li::before {
+  content: '・';
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  color: var(--color-accent);
+}
+
+.goods-notes__sub {
+  font-family: var(--font-body-ja);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  margin: 1.8rem 0 0.6rem;
+  letter-spacing: 0.05em;
+}
+
+.goods-notes__lead {
+  font-size: 0.78rem;
+  margin: 0 0 0.4rem;
+  color: var(--color-text);
+}
+
+/* ⑦ 会場限定 チェキコレ特典 */
+.goods-special,
+.goods-stamp {
+  position: relative;
+  max-width: 720px;
+  margin: 0 auto 2.2rem;
+  padding: 2.5rem 1.4rem 2rem;
+  background:
+    linear-gradient(180deg, rgba(201, 168, 76, 0.04) 0%, rgba(12, 10, 15, 0.5) 100%);
+  border: 1px solid rgba(201, 168, 76, 0.35);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.goods-special__ribbon,
+.goods-stamp__ribbon {
+  position: absolute;
+  top: 12px;
+  right: -32px;
+  transform: rotate(45deg);
+  background: var(--color-accent);
+  color: var(--gold-950, #1a140a);
+  font-family: var(--font-heading-en);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  padding: 4px 40px;
+  z-index: 1;
+}
+
+.goods-special__lead,
+.goods-stamp__lead {
+  font-size: 0.9rem;
+  line-height: 1.85;
+  color: var(--color-text);
+  margin: 0 0 1rem;
+}
+
+.goods-special__lead strong,
+.goods-stamp__lead strong {
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+.goods-special__lead em {
+  color: var(--color-accent);
+  font-style: normal;
+  font-weight: 700;
+  border-bottom: 1px dashed rgba(201, 168, 76, 0.6);
+  padding-bottom: 1px;
+}
+
+.goods-special__note {
+  margin-top: 1.5rem;
+  padding: 1rem 1.2rem 0.6rem;
+  background: rgba(12, 10, 15, 0.5);
+  border-left: 2px solid var(--color-accent);
+  border-radius: 0 3px 3px 0;
+}
+
+.goods-special__note-title {
+  font-family: var(--font-body-ja);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+  margin: 0 0 0.6rem;
+}
+
+.goods-special__aside {
+  margin: 1rem 0 0;
+  padding: 0.6rem 0.8rem;
+  font-size: 0.8rem;
+  color: var(--color-sub-text);
+  background: rgba(201, 168, 76, 0.08);
+  border-radius: 3px;
+}
+
+/* Meet&Greetとは？ */
+.goods-special__mg {
+  margin-top: 1.5rem;
+  padding: 1.2rem 1.3rem;
+  text-align: center;
+  background: rgba(201, 168, 76, 0.07);
+  border: 1px dashed rgba(201, 168, 76, 0.45);
+  border-radius: 4px;
+}
+
+.goods-special__mg-title {
+  font-family: var(--font-body-ja);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--color-accent);
+  margin: 0 0 0.7rem;
+}
+
+.goods-special__mg-body {
+  font-size: 0.88rem;
+  line-height: 1.9;
+  color: var(--color-text);
+  margin: 0;
+}
+
+/* 特典ブロックの見出しを発光させて目立たせる */
+.goods-special .goods-block__heading,
+.goods-stamp .goods-block__heading {
+  color: #f5d44b;
+  text-shadow:
+    0 0 12px rgba(245, 212, 75, 0.55),
+    0 0 32px rgba(201, 168, 76, 0.35);
+  animation: goodsHeadingGlow 2.8s ease-in-out infinite;
+}
+
+@keyframes goodsHeadingGlow {
+  0%, 100% {
+    text-shadow:
+      0 0 12px rgba(245, 212, 75, 0.45),
+      0 0 32px rgba(201, 168, 76, 0.25);
+  }
+  50% {
+    text-shadow:
+      0 0 18px rgba(245, 212, 75, 0.8),
+      0 0 48px rgba(201, 168, 76, 0.5);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .goods-special .goods-block__heading,
+  .goods-stamp .goods-block__heading {
+    animation: none;
+  }
+}
+
+/* ⑧ スタンプカード */
+.goods-stamp__rewards {
+  list-style: none;
+  padding: 0;
+  margin: 1.6rem 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.8rem;
+}
+
+.goods-stamp__rewards li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  background: rgba(12, 10, 15, 0.55);
+  border: 1px solid rgba(201, 168, 76, 0.28);
+  border-radius: 4px;
+}
+
+.goods-stamp__count {
+  flex: 0 0 auto;
+  font-family: var(--font-heading-en);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  line-height: 1;
+  min-width: 3.2em;
+}
+
+.goods-stamp__count small {
+  font-size: 0.55em;
+  letter-spacing: 0.1em;
+  margin-left: 0.15em;
+}
+
+.goods-stamp__gift {
+  font-family: var(--font-body-ja);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--color-text);
+}
+
+.goods-stamp .accordion--notes {
+  margin: 1.5rem 0 0;
+}
+
+/* ⑨ 事前通販ボタン — EPバナーと同じマルキーピルの文法で統一 */
+.goods-store {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+  max-width: 560px;
+  margin: 0 auto 1.5rem;
+  padding: 1.6rem 1.2rem 1.7rem;
+  text-decoration: none;
+  color: var(--color-text);
+  background:
+    linear-gradient(180deg, rgba(201, 168, 76, 0.07) 0%, rgba(12, 10, 15, 0.55) 100%);
+  border: 1px solid rgba(201, 168, 76, 0.4);
+  border-radius: 6px;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+  text-align: center;
+}
+
+.goods-store:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 32px rgba(201, 168, 76, 0.25);
+  transform: translateY(-2px);
+}
+
+.goods-store__badge {
+  display: inline-block;
+  font-family: var(--font-body-ja);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: var(--gold-950, #1a140a);
+  background: var(--color-accent);
+  padding: 4px 14px;
+  border-radius: 2px;
+}
+
+.goods-store__period {
+  font-family: var(--font-heading-en), var(--font-body-ja);
+  font-size: clamp(0.95rem, 2.6vw, 1.2rem);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #ffffff;
+  margin: 0;
+}
+
+.goods-store__cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: min(88%, 380px);
+  height: clamp(40px, 5.5vw, 48px);
+  margin-top: 0.4rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.96);
+  color: #0b0805;
+  overflow: hidden;
+  box-shadow:
+    0 4px 24px rgba(201, 168, 76, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.goods-store:hover .goods-store__cta {
+  transform: translateY(-2px);
+  box-shadow:
+    0 8px 32px rgba(201, 168, 76, 0.55),
+    0 0 0 1px rgba(255, 255, 255, 0.7) inset;
+}
+
+.goods-store__marquee {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  white-space: nowrap;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+}
+
+.goods-store__marquee-track {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  animation: epMarquee 16s linear infinite;
+}
+
+.goods-store__marquee-item {
+  font-family: var(--font-heading-en);
+  font-size: clamp(0.85rem, 1.5vw, 1rem);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  padding: 0 1.2em;
+  position: relative;
+}
+
+.goods-store__marquee-item::after {
+  content: '↗';
+  position: absolute;
+  right: -0.4em;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.85em;
+  color: var(--color-accent);
+  letter-spacing: 0;
+  font-weight: 700;
+}
+
+.goods-store:hover .goods-store__marquee-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .goods-store__marquee-track {
+    animation: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .goods-stamp__rewards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .goods-stamp__rewards li {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.6rem;
+    padding: 1.4rem 1rem;
+  }
+  .goods-stamp__count {
+    min-width: auto;
+  }
+}
+
+/* -----------------------------------------
    9b. GUEST セクション (Zepp公演 出演者)
    ----------------------------------------- */
 .guest__lead {
@@ -2729,12 +3366,12 @@ a.guest-card__name:hover {
 /* Tablet (768px) */
 @media (max-width: 768px) {
   :root {
-    --section-pad-y: 80px;
+    --section-pad-y: 52px;
     --section-pad-x: 20px;
   }
 
   .section__heading {
-    margin-bottom: 36px;
+    margin-bottom: 28px;
   }
 
   .schedule__item {
@@ -2871,7 +3508,7 @@ a.guest-card__name:hover {
   position: relative;
   width: 100%;
   padding: 0;
-  margin: 0 auto clamp(40px, 6vw, 56px);
+  margin: 0 auto clamp(64px, 9vw, 88px);
   display: flex;
   justify-content: center;
 }
