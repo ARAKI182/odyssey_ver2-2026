@@ -937,7 +937,7 @@
     const btn = document.getElementById('fcTicketImg');
     if (!btn) return;
     btn.addEventListener('click', () => {
-      openSingleLightbox('img/Replica-Ticket.jpg', 'ピクチャーチケット（SAMPLE）');
+      openSingleLightbox('img/Replica-Ticket.png', 'ピクチャーチケット（SAMPLE）');
     });
   }
 

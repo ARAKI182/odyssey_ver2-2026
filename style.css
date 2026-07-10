@@ -2679,7 +2679,7 @@ a.guest-card__name:hover {
 .fc-benefit__ticket img {
   height: 170px;
   width: auto;
-  max-width: 64px;
+  max-width: 130px;
   object-fit: contain;
   border: 1px solid rgba(201, 168, 76, 0.35);
   border-radius: 2px;
