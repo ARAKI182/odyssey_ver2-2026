@@ -87,7 +87,8 @@
         "reception": { "start": "6/20（土）20:00", "end": "7/5（日）23:59" },
         "lottery": "7/9（木）",
         "payment": { "start": "7/9（木）13:00", "end": "7/12（日）21:00" },
-        "active": true
+        "phase": "payment",
+        "active": false
       },
       {
         "id": "zepp-pg-2",
@@ -96,7 +97,8 @@
         "reception": { "start": "6/20（土）20:00", "end": "7/5（日）23:59" },
         "lottery": "7/9（木）",
         "payment": { "start": "7/9（木）13:00", "end": "7/12（日）21:00" },
-        "active": true
+        "phase": "payment",
+        "active": false
       },
       {
         "id": "zepp-pg-3",
@@ -105,7 +107,7 @@
         "reception": { "start": "7/11（土）12:00", "end": "7/26（日）23:59" },
         "lottery": "7/30（木）",
         "payment": { "start": "7/30（木）13:00", "end": "8/2（日）21:00" },
-        "active": false
+        "active": true
       },
       {
         "id": "zepp-general",

@@ -1618,6 +1618,29 @@ ul, ol {
   opacity: 0.7;
 }
 
+.ticket-schedule__status {
+  display: inline-block;
+  margin-left: 0.4em;
+  padding: 1px 8px;
+  font-size: 0.7rem;
+  font-family: var(--font-heading-en);
+  letter-spacing: 0.1em;
+  color: var(--color-sub-text);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 2px;
+  vertical-align: middle;
+}
+
+.ticket-schedule__note {
+  margin: 0.8rem 0 0;
+  padding: 0.6rem 0.9rem;
+  font-size: 0.82rem;
+  color: var(--color-text);
+  background: rgba(201, 168, 76, 0.08);
+  border-left: 2px solid var(--color-accent);
+  border-radius: 0 3px 3px 0;
+}
+
 .accordion__sub-heading {
   font-size: 0.82rem;
   font-weight: 700;
