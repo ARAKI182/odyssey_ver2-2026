@@ -2641,6 +2641,55 @@ a.guest-card__name:hover {
   line-height: 1.2;
 }
 
+/* No.03 タイトルは1行固定 */
+.fc-benefit__title--nowrap {
+  white-space: nowrap;
+}
+
+/* No.03 ピクチャーチケット — テキスト左＋縦長画像右 */
+.fc-benefit__body {
+  display: flex;
+  align-items: stretch;
+  gap: 12px;
+  width: 100%;
+  text-align: left;
+}
+
+.fc-benefit__text {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.fc-benefit__ticket {
+  flex: 0 0 auto;
+  align-self: center;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: zoom-in;
+  line-height: 0;
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.fc-benefit__ticket:hover {
+  transform: scale(1.04);
+  filter: drop-shadow(0 0 10px rgba(201, 168, 76, 0.5));
+}
+
+.fc-benefit__ticket img {
+  height: 170px;
+  width: auto;
+  max-width: 64px;
+  object-fit: contain;
+  border: 1px solid rgba(201, 168, 76, 0.35);
+  border-radius: 2px;
+}
+
+/* ライトボックス単画像モード（矢印非表示） */
+.lightbox--single .lightbox__arrow {
+  display: none;
+}
+
 .fc-benefit__title {
   font-family: var(--font-body-ja);
   font-size: 0.95rem;

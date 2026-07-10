@@ -912,7 +912,33 @@
     const lightbox = document.getElementById('lightbox');
     if (!lightbox) return;
     lightbox.classList.remove('is-active');
+    lightbox.classList.remove('lightbox--single');
     document.body.style.overflow = '';
+  }
+
+  /* 単画像ライトボックス（FCピクチャーチケット等、Journal以外から使う） */
+  function openSingleLightbox(src, caption) {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    if (!lightbox || !lightboxImg) return;
+
+    lightboxImg.src = src;
+    if (lightboxCaption) {
+      lightboxCaption.textContent = caption || '';
+      lightboxCaption.style.display = caption ? 'block' : 'none';
+    }
+    lightbox.classList.add('lightbox--single');
+    lightbox.classList.add('is-active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function initFcTicketLightbox() {
+    const btn = document.getElementById('fcTicketImg');
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+      openSingleLightbox('img/Replica-Ticket.jpg', 'ピクチャーチケット（SAMPLE）');
+    });
   }
 
   function lightboxNav(dir) {
@@ -1063,6 +1089,7 @@
     // Interactions
     initHamburger();
     initSectionCollapse();
+    initFcTicketLightbox();
     initAccordions();
     initNewsModal();
     initScheduleModal();
