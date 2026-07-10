@@ -2685,6 +2685,15 @@ a.guest-card__name:hover {
   border-radius: 2px;
 }
 
+/* 3カラムグリッド時はカードが狭いので、テキスト上・画像下に切り替え */
+@media (min-width: 640px) {
+  .fc-benefit__body {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+}
+
 /* ライトボックス単画像モード（矢印非表示） */
 .lightbox--single .lightbox__arrow {
   display: none;
