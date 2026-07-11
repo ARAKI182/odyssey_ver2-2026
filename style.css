@@ -3834,3 +3834,128 @@ a.guest-card__name:hover {
 .accordion:has(.accordion__trigger[aria-expanded="true"]) {
   max-width: 100%;
 }
+
+/* ============================================
+   調整第2弾 — センター寄せ徹底＋幅・フォント圧縮
+   ============================================ */
+
+/* 1&6. アコーディオンは開いても幅そのまま（560px固定） */
+.accordion,
+.accordion:has(.accordion__trigger[aria-expanded="true"]) {
+  max-width: 560px;
+}
+
+/* 6&7. 箇条書きは行頭記号ごと各行センター寄せ（ブロック中央置きをやめる） */
+.accordion__inner .accordion__list,
+.accordion__inner ul,
+.goods-notes__list {
+  display: block;
+  text-align: center;
+}
+
+.accordion__list li {
+  padding-left: 0;
+}
+
+.accordion__list li::before {
+  position: static;
+  display: inline-block;
+  margin-right: 8px;
+  vertical-align: 2px;
+}
+
+.goods-notes__list li {
+  padding-left: 0;
+  text-align: center;
+}
+
+.goods-notes__list li::before {
+  position: static;
+  margin-right: 4px;
+}
+
+.goods-notes__sub {
+  text-align: center;
+}
+
+/* 2. 来場者特典カード — 幅をアコーディオンに合わせて中身センター */
+.ticket-bonus {
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.ticket-bonus__notes {
+  text-align: center;
+}
+
+.ticket-bonus__notes li {
+  padding-left: 0;
+  text-indent: 0;
+}
+
+/* 3. セクション見出しセンター寄せ＋開閉アイコンをテキスト隣に */
+.section__heading {
+  text-align: center;
+}
+
+.section__toggle {
+  display: inline-flex;
+  width: auto;
+  justify-content: center;
+  gap: 22px;
+}
+
+/* 4. チェキ特典/スタンプの中身もセンター */
+.goods-special,
+.goods-stamp {
+  text-align: center;
+}
+
+.goods-special__note-title {
+  text-align: center;
+}
+
+/* 5. チェキ特典・スタンプカードのフォント一回り縮小 */
+.goods-block__heading {
+  font-size: clamp(0.95rem, 2.6vw, 1.15rem);
+}
+
+.goods-special__lead,
+.goods-stamp__lead {
+  font-size: 0.82rem;
+}
+
+.goods-special__note-title,
+.goods-notes__sub {
+  font-size: 0.85rem;
+}
+
+.goods-notes__list li {
+  font-size: 0.7rem;
+}
+
+.goods-special__aside {
+  font-size: 0.72rem;
+}
+
+.goods-special__mg-title {
+  font-size: 0.85rem;
+}
+
+.goods-special__mg-body {
+  font-size: 0.78rem;
+}
+
+.goods-stamp__count {
+  font-size: 1.35rem;
+}
+
+.goods-stamp__count small {
+  font-size: 0.7rem;
+}
+
+.goods-stamp__gift {
+  font-size: 0.74rem;
+}
