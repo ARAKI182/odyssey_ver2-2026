@@ -3743,3 +3743,40 @@ a.guest-card__name:hover {
     max-width: 320px;
   }
 }
+
+/* ============================================
+   PC広幅化 — 1100px以上でコンテンツ幅を拡張
+   ============================================ */
+@media (min-width: 1100px) {
+  :root {
+    --inner-max: 1200px;
+  }
+
+  /* 720px系の中身ブロックも連動して拡張 */
+  .goods-lead,
+  .goods-sale,
+  .accordion--notes,
+  .goods-special,
+  .goods-stamp {
+    max-width: 920px;
+  }
+
+  .movie-carousel {
+    max-width: 1000px;
+  }
+
+  .fc-panel {
+    max-width: 1040px;
+  }
+
+  /* カードが広くなるのでNo.03はテキスト左・画像右に戻す */
+  .fc-benefit__body {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 14px;
+  }
+
+  .fc-benefit__ticket {
+    align-self: center;
+  }
+}
