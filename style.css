@@ -3959,3 +3959,125 @@ a.guest-card__name:hover {
 .goods-stamp__gift {
   font-size: 0.74rem;
 }
+
+/* ============================================
+   調整第3弾 — クリック領域拡大＋560px統一＋箇条書き是正
+   ============================================ */
+
+/* ② NEWS一覧: ブロックを中央に置き、行の左端は揃える */
+.news__list {
+  max-width: 560px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+/* ③ 会場ごとの行も560px幅で中央 */
+.schedule__list {
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ① 行全体クリックでモーダルが開く */
+.schedule__item {
+  cursor: pointer;
+}
+
+/* ④ アコーディオンのトリガーラベルを中央配置（複数行の左端は揃える）
+     アイコンは右端に固定 */
+.accordion__trigger {
+  position: relative;
+  justify-content: center;
+  text-align: left;
+  padding-left: 52px;
+  padding-right: 52px;
+}
+
+.accordion__icon {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* ④ 箇条書き（※・付き）: ブロック中央置き＋行の左端揃えに戻す
+     ※FANCLUB内は現状維持 */
+.accordion__inner .accordion__list,
+.accordion__inner ul,
+.goods-notes__list,
+.ticket-bonus__notes {
+  display: inline-block;
+  text-align: left;
+}
+
+.accordion__list li {
+  padding-left: 18px;
+}
+
+.accordion__list li::before {
+  position: absolute;
+  left: 0;
+  top: 14px;
+  display: block;
+  margin-right: 0;
+}
+
+.goods-notes__list li {
+  padding-left: 1.1rem;
+  text-align: left;
+}
+
+.goods-notes__list li::before {
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  margin-right: 0;
+}
+
+.ticket-bonus__notes li {
+  padding-left: 1em;
+  text-indent: -1em;
+  text-align: left;
+}
+
+/* ⑦ アコーディオン自体のセンター配置を明示（スタンプ注意事項含む） */
+.accordion {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ============================================
+   調整第4弾
+   ============================================ */
+
+/* スケジュール行はGUESTと同じ幅 */
+.schedule__list {
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 価格カード・ツアー見出しをチケットボタン(560px)と同幅で中央に */
+.ticket-price-card,
+.ticket-group-heading {
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 販売場所／時間カードも560px */
+.goods-sale {
+  max-width: 560px;
+}
+
+/* スタンプカードの注意事項: margin:1.5rem 0 0 (特異度0,2,0) が
+   auto centering を潰していたので同特異度で上書き */
+.goods-stamp .accordion--notes {
+  margin: 1.5rem auto 0;
+}
+
+/* 公演に関する注意事項: 箇条書きは左寄せ（ブロック中央置きをやめる） */
+.accordion--rules .accordion__list {
+  display: block;
+  text-align: left;
+}

@@ -281,11 +281,12 @@
       document.body.style.overflow = '';
     }
 
-    // Event delegation for + buttons
+    // 行全体クリックでモーダル（+ボタン含む）
     document.addEventListener('click', e => {
-      const btn = e.target.closest('.schedule__detail-btn');
-      if (btn) {
-        const id = parseInt(btn.dataset.showId);
+      const item = e.target.closest('.schedule__item');
+      if (item) {
+        const btn = item.querySelector('.schedule__detail-btn');
+        const id = btn ? parseInt(btn.dataset.showId) : NaN;
         if (!isNaN(id)) open(id);
       }
     });
@@ -393,7 +394,10 @@
     }
 
     toggles.forEach(toggle => {
-      toggle.addEventListener('click', () => {
+      // 見出し帯のどこを押しても開閉できるように、リスナーは帯(h2)側に付ける
+      const heading = toggle.closest('.section__heading') || toggle;
+      heading.style.cursor = 'pointer';
+      heading.addEventListener('click', () => {
         const expanded = toggle.getAttribute('aria-expanded') === 'true';
         setExpanded(toggle, !expanded);
       });
