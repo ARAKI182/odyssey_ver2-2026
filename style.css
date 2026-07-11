@@ -3780,3 +3780,57 @@ a.guest-card__name:hover {
     align-self: center;
   }
 }
+
+/* ============================================
+   テキストセンター寄せ＋アコーディオン閉時の幅圧縮
+   ============================================ */
+
+/* アコーディオン内テキストは中央寄せ。
+   箇条書きは行頭記号が左依存なので「ブロックごと中央・行は左」 */
+.accordion__inner {
+  text-align: center;
+}
+
+.accordion__inner .accordion__list,
+.accordion__inner ul {
+  display: inline-block;
+  text-align: left;
+}
+
+.accordion__inner .ticket-schedule {
+  display: inline-grid;
+  text-align: left;
+}
+
+.accordion__sub-heading,
+.accordion__text,
+.ticket-schedule__note {
+  text-align: center;
+}
+
+/* FC No.03 本文も中央基準（箇条書きブロックは左のまま中央配置） */
+.fc-benefit__body {
+  text-align: center;
+}
+
+.fc-benefit__notes {
+  display: inline-block;
+  width: auto;
+  text-align: left;
+}
+
+.journal__section-header {
+  text-align: center;
+}
+
+/* アコーディオンは閉時 = 事前通販ボタンと同じ幅感、開くと全幅へ */
+.accordion {
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+  transition: max-width 0.45s var(--ease-smooth);
+}
+
+.accordion:has(.accordion__trigger[aria-expanded="true"]) {
+  max-width: 100%;
+}
