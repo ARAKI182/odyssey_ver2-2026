@@ -4081,3 +4081,206 @@ a.guest-card__name:hover {
   display: block;
   text-align: left;
 }
+
+/* ============================================
+   会場物販・整理券
+   ============================================ */
+.seiriken__lead {
+  font-size: 0.85rem;
+  line-height: 1.9;
+  margin: 0 0 1.4rem;
+}
+
+.seiriken__lead strong {
+  color: var(--color-accent);
+}
+
+/* 整理券カードはLINEグリーンの枠に */
+#seiriken {
+  border-color: rgba(6, 199, 85, 0.65);
+  box-shadow: 0 0 24px rgba(6, 199, 85, 0.12);
+}
+
+/* リード文の強調行 */
+.seiriken__lead-em {
+  display: inline-block;
+  font-style: normal;
+  font-weight: 700;
+  color: #ffffff;
+  border-bottom: 2px solid rgba(6, 199, 85, 0.85);
+  padding-bottom: 2px;
+  margin-top: 4px;
+}
+
+.seiriken-step__hint {
+  font-size: 0.72rem;
+  color: var(--color-sub-text);
+  margin: 2px 0 0;
+}
+
+/* 受付対象（8・9月公演）ボックス */
+.seiriken-target {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 1rem 1.2rem;
+  margin: 0 0 1rem;
+  background: rgba(201, 168, 76, 0.1);
+  border: 1px solid var(--color-accent);
+  border-radius: 4px;
+  box-shadow: 0 0 18px rgba(201, 168, 76, 0.15);
+}
+
+.seiriken-target__label {
+  font-family: var(--font-body-ja);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  color: var(--color-accent);
+}
+
+.seiriken-target__value {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+}
+
+.seiriken-target__value small {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--color-sub-text);
+  margin-left: 0.2em;
+}
+
+.seiriken-target__note {
+  font-size: 0.74rem;
+  color: var(--color-sub-text);
+}
+
+.seiriken-schedule {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0 0 1.4rem;
+}
+
+.seiriken-phase {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 0.9rem 1rem;
+  background: rgba(201, 168, 76, 0.06);
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  border-radius: 4px;
+}
+
+.seiriken-phase__label {
+  font-family: var(--font-body-ja);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--gold-950);
+  background: var(--color-accent);
+  padding: 2px 12px;
+  border-radius: 2px;
+  align-self: center;
+  margin-bottom: 4px;
+}
+
+.seiriken-phase__period {
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+}
+
+.seiriken-phase__note {
+  font-size: 0.72rem;
+  color: var(--color-sub-text);
+}
+
+.seiriken__prereq {
+  font-size: 0.82rem;
+  line-height: 1.9;
+  margin: 0 0 1.2rem;
+}
+
+.seiriken__prereq strong {
+  color: var(--color-accent);
+}
+
+.seiriken-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.seiriken-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 1.1rem 1rem 1.3rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px dashed rgba(201, 168, 76, 0.4);
+  border-radius: 4px;
+}
+
+.seiriken-step__num {
+  font-family: var(--font-heading-en);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  color: var(--color-accent);
+}
+
+.seiriken-step__label {
+  font-size: 0.88rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.seiriken-btn {
+  display: inline-block;
+  min-width: 220px;
+  padding: 12px 32px;
+  font-family: var(--font-body-ja);
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-align: center;
+  text-decoration: none;
+  color: var(--color-text);
+  border: 1px solid var(--color-accent);
+  border-radius: 999px;
+  transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.seiriken-btn:hover {
+  background: rgba(201, 168, 76, 0.15);
+  box-shadow: 0 0 18px rgba(201, 168, 76, 0.3);
+}
+
+.seiriken-btn--apply {
+  color: #ffffff;
+  background: linear-gradient(135deg, #06C755, #05a648);
+  border: 0;
+  box-shadow: 0 4px 20px rgba(6, 199, 85, 0.35);
+}
+
+.seiriken-btn--apply:hover {
+  background: linear-gradient(135deg, #1fd668, #06C755);
+  box-shadow: 0 6px 28px rgba(6, 199, 85, 0.55);
+}
+
+/* 整理券の注意事項は左寄せフラッシュ */
+.accordion__inner .goods-notes__list--left,
+.goods-notes__list--left {
+  display: block;
+  text-align: left;
+}
+
+.goods-notes__list--left li {
+  text-align: left;
+}

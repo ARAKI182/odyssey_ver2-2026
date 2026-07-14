@@ -506,6 +506,25 @@
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape' && modal.classList.contains('is-open')) close();
     });
+
+    // モーダル本文内のアンカーリンク: モーダルを閉じてから該当箇所へ
+    bodyEl.addEventListener('click', e => {
+      const link = e.target.closest('a[href^="#"]');
+      if (!link) return;
+      e.preventDefault();
+      const target = document.getElementById(link.getAttribute('href').slice(1));
+      close();
+      if (!target) return;
+      // 折りたたまれたセクション内なら開いてからスクロール
+      const section = target.closest('.section');
+      const toggle = section ? section.querySelector('.section__toggle') : null;
+      if (toggle && toggle.getAttribute('aria-expanded') !== 'true') {
+        toggle.setAttribute('aria-expanded', 'true');
+        const collapse = document.getElementById(toggle.getAttribute('aria-controls'));
+        if (collapse) collapse.classList.remove('is-collapsed');
+      }
+      setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 150);
+    });
   }
 
   /* -----------------------------------------
