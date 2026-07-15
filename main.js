@@ -438,6 +438,29 @@
   }
 
   /* -----------------------------------------
+     6b. 時限公開 — data-reveal / news.json の reveal
+     ----------------------------------------- */
+  function isRevealed(isoString) {
+    return new Date(isoString).getTime() <= Date.now();
+  }
+
+  function initTimedReveal() {
+    const targets = document.querySelectorAll('[data-reveal]');
+    targets.forEach(el => {
+      if (isRevealed(el.dataset.reveal)) {
+        el.hidden = false;
+        return;
+      }
+      el.hidden = true;
+      // 開きっぱなしのタブでも時刻到達で自動表示（最大24時間先まで予約）
+      const delay = new Date(el.dataset.reveal).getTime() - Date.now();
+      if (delay < 24 * 60 * 60 * 1000) {
+        setTimeout(() => { el.hidden = false; }, delay);
+      }
+    });
+  }
+
+  /* -----------------------------------------
      7. NEWS — Load from news.json + Modal
      ----------------------------------------- */
   let newsData = [];
@@ -450,6 +473,9 @@
       const res = await fetch('news.json');
       if (!res.ok) throw new Error('Failed to load news.json');
       newsData = await res.json();
+
+      // reveal 時刻が未来の記事は表示しない
+      newsData = newsData.filter(item => !item.reveal || isRevealed(item.reveal));
 
       list.innerHTML = '';
       newsData.forEach(item => {
@@ -1112,6 +1138,7 @@
     // Interactions
     initHamburger();
     initSectionCollapse();
+    initTimedReveal();
     initFcTicketLightbox();
     initAccordions();
     initNewsModal();
