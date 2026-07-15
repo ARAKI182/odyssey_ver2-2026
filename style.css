@@ -4284,3 +4284,53 @@ a.guest-card__name:hover {
 .goods-notes__list--left li {
   text-align: left;
 }
+
+/* ============================================
+   チケットトレード（左寄せアコーディオン＋申込ボタン）
+   ============================================ */
+/* 中身を全部左寄せ */
+.accordion--left .accordion__inner,
+.accordion--left .accordion__text,
+.accordion--left .accordion__sub-heading {
+  text-align: left;
+}
+
+.accordion--left .accordion__list {
+  display: block;
+  text-align: left;
+}
+
+/* 申込ボタン（センターに置く） */
+.accordion__btn-wrap {
+  text-align: center;
+  margin: 0.6rem 0 1rem;
+}
+
+.accordion__btn {
+  display: inline-block;
+  min-width: 260px;
+  padding: 13px 36px;
+  font-family: var(--font-body-ja);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-decoration: none;
+  color: var(--gold-950);
+  background: linear-gradient(135deg, #f5d44b, var(--color-accent));
+  border-radius: 999px;
+  box-shadow: 0 4px 20px rgba(201, 168, 76, 0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.accordion__btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 28px rgba(201, 168, 76, 0.55);
+}
+
+.accordion__btn-note {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 0.72rem;
+  color: var(--color-sub-text);
+}
