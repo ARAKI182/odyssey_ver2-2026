@@ -375,7 +375,7 @@
         <p class="ticket-price-card__meta">(tax in) +Drink</p>
       </div>
 
-      <div class="accordion accordion--playguide fade-item">
+      <div class="accordion accordion--playguide fade-item" data-hide-at="2026-08-05T17:00:00+09:00">
         <button class="accordion__trigger accordion__trigger--playguide" aria-expanded="false">
           <span>プレイガイド3次先行<small class="accordion__date-range">7/11(土)12:00〜7/26(日)23:59</small></span>
           <span class="accordion__icon"></span>
@@ -388,6 +388,25 @@
               <dt>入金期間</dt><dd>7/30（木）13:00 〜 8/2（日）21:00</dd>
             </dl>
             <a href="https://eplus.jp/araki2026/" target="_blank" rel="noopener" class="ticket-schedule__cta" aria-label="プレイガイド Zepp3次先行に申し込む">申し込む</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Zepp一般発売（8/5 17:00 自動表示） -->
+      <div class="accordion accordion--general fade-item" id="zepp-general" data-reveal="2026-08-05T17:00:00+09:00" hidden>
+        <button class="accordion__trigger accordion__trigger--general" aria-expanded="false">
+          <span>一般発売（先着）<small class="accordion__date-range">8/8(土)17:00〜 売り切れ次第終了</small></span>
+          <span class="accordion__icon"></span>
+        </button>
+        <div class="accordion__content">
+          <div class="accordion__inner">
+            <dl class="ticket-schedule">
+              <dt>受付</dt><dd>8/8（土）17:00 〜 売り切れ次第終了</dd>
+              <dt>販売方式</dt><dd>先着</dd>
+              <dt>席種</dt><dd>1F STANDING ／ 2F指定席</dd>
+            </dl>
+            <p class="ticket-schedule__note">※Zepp Nagoyaは2F後方スタンディング席を追加販売いたします</p>
+            <a href="https://eplus.jp/araki2026/" target="_blank" rel="noopener" class="ticket-schedule__cta" aria-label="Zeppツアー一般発売に申し込む">申し込む</a>
           </div>
         </div>
       </div>
@@ -592,25 +611,41 @@
       <!-- ⑦ 会場限定チェキコレ特典 -->
       <div class="goods-special fade-item">
         <div class="goods-special__ribbon" aria-hidden="true">SPECIAL</div>
+
         <h3 class="goods-block__heading">会場限定 チェキ風コレクション特典</h3>
         <p class="goods-special__lead">各公演日ごとに<strong>10名様</strong>へ、終演後のあらきとの<strong>Meet&amp;Greet</strong>にご参加いただける<em>当選券（当たり券）</em>を、<br>チェキ風コレクションカードへランダム封入しております。</p>
         <p class="goods-special__lead">さらに各公演日ごとに<strong>2名様</strong>を、本番ステージ上でのチケット抽選でMeet&amp;Greetにご招待いたします。</p>
-
-        <div class="goods-special__note">
-          <h4 class="goods-special__note-title">ご参加にあたって</h4>
-          <ul class="goods-notes__list">
-            <li>当たり券はご購入いただいたチェキ風コレクションカードの中にランダムで封入されています。その場でご確認ください。</li>
-            <li>当たり券は公演当日限り有効です。後日の開封・別公演でのご使用はできません。</li>
-            <li>当たり券が出たお客様は、終演後のお見送り会終了後、当日ご案内するMeet&amp;Greet受付まで速やかにお越しください。<br>受付はお見送り会終了から5分後を目安に締め切らせていただきます。締め切り後のご参加は対応いたしかねます。</li>
-            <li>受付では当たり券をお預かり（回収）いたします。</li>
-            <li>当たり券はMeet&amp;Greetご参加の権利です。チェキ風コレクションカード現品との引き換え・補填はございません。</li>
-          </ul>
-          <p class="goods-special__aside">※別途、ランダムであらきの直筆サイン入りカードも封入されています。</p>
-        </div>
+        <p class="goods-special__aside">※別途、ランダムであらきの直筆サイン入りカードも封入されています。</p>
 
         <div class="goods-special__mg">
           <h4 class="goods-special__mg-title">【Meet&amp;Greet（ミート＆グリート）とは？】</h4>
           <p class="goods-special__mg-body">終演後、所定の場所であらきと1対1で&quot;サシ&quot;でお話しいただけるイベントです。<br>何を話すかはあなた次第。お待ちしております。</p>
+        </div>
+
+        <div class="accordion accordion--notes accordion--wide" style="margin-top: 1.5rem;">
+          <button class="accordion__trigger accordion__trigger--notes" aria-expanded="false">
+            <span>ご参加にあたってご確認ください</span>
+            <span class="accordion__icon"></span>
+          </button>
+          <div class="accordion__content">
+            <div class="accordion__inner">
+              <ul class="goods-notes__list">
+                <li>当たり券はご購入いただいたチェキ風コレクションカードの中にランダムで封入されています。その場でご確認ください。</li>
+                <li>当たり券は公演当日限り有効です。記載の日付以外、後日の開封、別公演でのご使用はできません。</li>
+                <li>当たり券がMeet&amp;Greetご参加の権利です。チェキ風コレクションカード現品との引き換え・補填はございません。</li>
+                <li>当たり券を紛失された場合、再発行はいたしかねます。</li>
+                <li>偽造・改ざん等が判明した場合、ご参加をお断りいたします。</li>
+                <li>当たり券が出た方は、終演後のお見送り会終了後、当日ご案内するMeet&amp;Greet受付まで速やかにお越しください。</li>
+                <li>受付・集合場所は、終演後に場内アナウンスにてご案内いたします。</li>
+                <li>受付はお見送り会終了から5分後を目安に締め切らせていただきます。締め切り後のご参加は対応いたしかねます。</li>
+                <li>受付では当たり券をお預かり（回収）いたします。</li>
+                <li>複数枚お持ちの場合、枚数に応じてご参加いただけます。</li>
+                <li>スタッフの指示に従わない行為、過度な身体接触、その他危険と判断される行為はお断りいたします。</li>
+                <li>当日の状況により、実施内容や運営方法が変更となる場合がございます。</li>
+                <li>天候・交通事情・出演者の都合等により、やむを得ずMeet&amp;Greetの内容が変更・中止となる場合がございます。</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -645,7 +680,7 @@
           </ul>
         </div>
 
-        <div class="accordion accordion--notes fade-item">
+        <div class="accordion accordion--notes accordion--wide fade-item">
           <button class="accordion__trigger accordion__trigger--notes" aria-expanded="false">
             <span>スタンプカードに関する注意事項</span>
             <span class="accordion__icon"></span>
@@ -669,7 +704,8 @@
       </div>
 
       <!-- ⑨ 事前通販ボタン -->
-      <a class="goods-store fade-item" href="https://araki-axiz.stores.jp" target="_blank" rel="noopener" aria-label="事前通販 ARAKI STORE へ">
+      <!-- 事前通販終了につき非表示中（事後販売時は hidden を外して期間・文言を更新） -->
+      <a class="goods-store fade-item" hidden href="https://araki-axiz.stores.jp" target="_blank" rel="noopener" aria-label="事前通販 ARAKI STORE へ">
         <span class="goods-store__badge">事前通販 受付期間</span>
         <span class="goods-store__period">7/11(土)21:00 〜 7/20(月)23:59</span>
         <span class="goods-store__cta">

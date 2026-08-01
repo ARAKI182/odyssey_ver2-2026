@@ -4362,3 +4362,16 @@ a.guest-card__name:hover {
   padding-bottom: 0.3rem;
   font-size: 0.76rem;
 }
+
+/* チェキコレ特典・スタンプカード内の注意アコーディオンはカード幅いっぱいに */
+.goods-special .accordion--wide,
+.goods-stamp .accordion--wide,
+.goods-special .accordion--wide:has(.accordion__trigger[aria-expanded="true"]),
+.goods-stamp .accordion--wide:has(.accordion__trigger[aria-expanded="true"]) {
+  max-width: 100%;
+}
+
+/* hidden属性はdisplay指定より必ず優先させる（時限公開・手動非表示の共通保険） */
+[hidden] {
+  display: none !important;
+}

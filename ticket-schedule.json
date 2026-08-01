@@ -6,27 +6,45 @@
         "id": "fc-1",
         "name": "FC最速先行（e+）",
         "type": "fc",
-        "reception": { "start": "4/19（日）20:00", "end": "4/27（月）23:59" },
+        "reception": {
+          "start": "4/19（日）20:00",
+          "end": "4/27（月）23:59"
+        },
         "lottery": "5/2（土）",
-        "payment": { "start": "5/2（土）13:00", "end": "5/5（火祝）21:00" },
+        "payment": {
+          "start": "5/2（土）13:00",
+          "end": "5/5（火祝）21:00"
+        },
         "active": false
       },
       {
         "id": "pg-1",
         "name": "プレイガイド先行（e+）",
         "type": "playguide",
-        "reception": { "start": "4/19（日）20:00", "end": "4/27（月）23:59" },
+        "reception": {
+          "start": "4/19（日）20:00",
+          "end": "4/27（月）23:59"
+        },
         "lottery": "5/2（土）",
-        "payment": { "start": "5/2（土）13:00", "end": "5/5（火祝）21:00" },
+        "payment": {
+          "start": "5/2（土）13:00",
+          "end": "5/5（火祝）21:00"
+        },
         "active": false
       },
       {
         "id": "fc-2",
         "name": "FC2次先行（e+）",
         "type": "fc",
-        "reception": { "start": "5/2（土）12:00", "end": "5/10（日）23:59" },
+        "reception": {
+          "start": "5/2（土）12:00",
+          "end": "5/10（日）23:59"
+        },
         "lottery": "5/14（木）",
-        "payment": { "start": "5/14（木）13:00", "end": "5/17（日）21:00" },
+        "payment": {
+          "start": "5/14（木）13:00",
+          "end": "5/17（日）21:00"
+        },
         "confirmed": "5/19（火）",
         "active": false
       },
@@ -34,25 +52,40 @@
         "id": "pg-2",
         "name": "プレイガイド2次先行（e+）",
         "type": "playguide",
-        "reception": { "start": "5/2（土）12:00", "end": "5/10（日）23:59" },
+        "reception": {
+          "start": "5/2（土）12:00",
+          "end": "5/10（日）23:59"
+        },
         "lottery": "5/14（木）",
-        "payment": { "start": "5/14（木）13:00", "end": "5/17（日）21:00" },
+        "payment": {
+          "start": "5/14（木）13:00",
+          "end": "5/17（日）21:00"
+        },
         "active": false
       },
       {
         "id": "pg-3",
         "name": "プレイガイド3次先行（e+）",
         "type": "playguide",
-        "reception": { "start": "5/24（日）20:00", "end": "6/7（日）23:59" },
+        "reception": {
+          "start": "5/24（日）20:00",
+          "end": "6/7（日）23:59"
+        },
         "lottery": "6/12（金）",
-        "payment": { "start": "6/12（金）13:00", "end": "6/15（月）21:00" },
+        "payment": {
+          "start": "6/12（金）13:00",
+          "end": "6/15（月）21:00"
+        },
         "active": false
       },
       {
         "id": "general",
         "name": "一般発売",
         "type": "general",
-        "reception": { "start": "6/20（土）17:00", "end": "売り切れ次第終了" },
+        "reception": {
+          "start": "6/20（土）17:00",
+          "end": "売り切れ次第終了"
+        },
         "sales_type": "先着",
         "active": true
       }
@@ -66,27 +99,45 @@
         "id": "zepp-fc-1",
         "name": "FC最速先行",
         "type": "fc",
-        "reception": { "start": "5/24（日）20:00", "end": "6/7（日）23:59" },
+        "reception": {
+          "start": "5/24（日）20:00",
+          "end": "6/7（日）23:59"
+        },
         "lottery": "6/12（金）",
-        "payment": { "start": "6/12（金）13:00", "end": "6/15（月）21:00" },
+        "payment": {
+          "start": "6/12（金）13:00",
+          "end": "6/15（月）21:00"
+        },
         "active": false
       },
       {
         "id": "zepp-pg-1",
         "name": "プレイガイド先行",
         "type": "playguide",
-        "reception": { "start": "5/24（日）20:00", "end": "6/7（日）23:59" },
+        "reception": {
+          "start": "5/24（日）20:00",
+          "end": "6/7（日）23:59"
+        },
         "lottery": "6/12（金）",
-        "payment": { "start": "6/12（金）13:00", "end": "6/15（月）21:00" },
+        "payment": {
+          "start": "6/12（金）13:00",
+          "end": "6/15（月）21:00"
+        },
         "active": false
       },
       {
         "id": "zepp-fc-2",
         "name": "FC2次先行",
         "type": "fc",
-        "reception": { "start": "6/20（土）20:00", "end": "7/5（日）23:59" },
+        "reception": {
+          "start": "6/20（土）20:00",
+          "end": "7/5（日）23:59"
+        },
         "lottery": "7/9（木）",
-        "payment": { "start": "7/9（木）13:00", "end": "7/12（日）21:00" },
+        "payment": {
+          "start": "7/9（木）13:00",
+          "end": "7/12（日）21:00"
+        },
         "phase": "payment",
         "active": false
       },
@@ -94,9 +145,15 @@
         "id": "zepp-pg-2",
         "name": "プレイガイド2次先行",
         "type": "playguide",
-        "reception": { "start": "6/20（土）20:00", "end": "7/5（日）23:59" },
+        "reception": {
+          "start": "6/20（土）20:00",
+          "end": "7/5（日）23:59"
+        },
         "lottery": "7/9（木）",
-        "payment": { "start": "7/9（木）13:00", "end": "7/12（日）21:00" },
+        "payment": {
+          "start": "7/9（木）13:00",
+          "end": "7/12（日）21:00"
+        },
         "phase": "payment",
         "active": false
       },
@@ -104,17 +161,29 @@
         "id": "zepp-pg-3",
         "name": "プレイガイド3次先行",
         "type": "playguide",
-        "reception": { "start": "7/11（土）12:00", "end": "7/26（日）23:59" },
+        "reception": {
+          "start": "7/11（土）12:00",
+          "end": "7/26（日）23:59"
+        },
         "lottery": "7/30（木）",
-        "payment": { "start": "7/30（木）13:00", "end": "8/2（日）21:00" },
-        "active": true
+        "payment": {
+          "start": "7/30（木）13:00",
+          "end": "8/2（日）21:00"
+        },
+        "active": false
       },
       {
         "id": "zepp-general",
         "name": "一般発売",
         "type": "general",
         "date": "8/8（土）",
-        "active": false
+        "active": true,
+        "reception": {
+          "start": "8/8（土）17:00",
+          "end": "売り切れ次第終了"
+        },
+        "sales_type": "先着",
+        "note": "Zepp Nagoyaは2F後方スタンディング席を追加販売"
       }
     ]
   }

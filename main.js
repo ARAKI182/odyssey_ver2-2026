@@ -445,8 +445,7 @@
   }
 
   function initTimedReveal() {
-    const targets = document.querySelectorAll('[data-reveal]');
-    targets.forEach(el => {
+    document.querySelectorAll('[data-reveal]').forEach(el => {
       if (isRevealed(el.dataset.reveal)) {
         el.hidden = false;
         return;
@@ -456,6 +455,18 @@
       const delay = new Date(el.dataset.reveal).getTime() - Date.now();
       if (delay < 24 * 60 * 60 * 1000) {
         setTimeout(() => { el.hidden = false; }, delay);
+      }
+    });
+
+    // 時限非表示 — 指定時刻を過ぎたら要素を隠す（受付終了した先行の自動撤去用）
+    document.querySelectorAll('[data-hide-at]').forEach(el => {
+      if (isRevealed(el.dataset.hideAt)) {
+        el.hidden = true;
+        return;
+      }
+      const delay = new Date(el.dataset.hideAt).getTime() - Date.now();
+      if (delay < 24 * 60 * 60 * 1000) {
+        setTimeout(() => { el.hidden = true; }, delay);
       }
     });
   }
