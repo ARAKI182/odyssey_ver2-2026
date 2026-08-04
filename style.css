@@ -4375,3 +4375,12 @@ a.guest-card__name:hover {
 [hidden] {
   display: none !important;
 }
+
+/* 券種の限定公演表記 */
+.ticket-price-card__only {
+  font-size: 0.68rem;
+  font-weight: 400;
+  color: var(--color-sub-text);
+  margin-left: 0.4em;
+  letter-spacing: 0.02em;
+}
