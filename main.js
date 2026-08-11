@@ -9,20 +9,84 @@
      1. COUNTDOWN
      ----------------------------------------- */
   function initCountdown() {
+    const box = document.getElementById('countdown');
     const el = document.getElementById('countdownDays');
-    if (!el) return;
+    if (!box || !el) return;
 
-    const target = new Date('2026-08-10T00:00:00+09:00');
+    const DEPART = new Date('2026-08-10T00:00:00+09:00');
+    const FINAL_END = new Date('2026-12-27T00:00:00+09:00');
+    const labelEl = box.querySelector('.countdown__label');
+    const unitEl = box.querySelector('.countdown__unit');
+    const DAY_MS = 1000 * 60 * 60 * 24;
+
+    // ツアー公演リスト（次の寄港地表示用）— shows.json ロード後に埋まる
+    let ports = [];
+
+    function setNextPort(html) {
+      let np = box.querySelector('.countdown__next-port');
+      if (!np) {
+        np = document.createElement('div');
+        np.className = 'countdown__next-port';
+        box.appendChild(np);
+      }
+      np.innerHTML = html;
+    }
 
     function update() {
       const now = new Date();
-      const diff = target - now;
-      if (diff <= 0) {
-        el.textContent = '0';
+
+      // ① 出発前：出発まで N DAYS
+      if (now < DEPART) {
+        labelEl.textContent = '出発まで';
+        unitEl.textContent = 'DAYS';
+        el.textContent = String(Math.ceil((DEPART - now) / DAY_MS));
         return;
       }
-      el.textContent = String(Math.ceil(diff / (1000 * 60 * 60 * 24)));
+
+      // ③ 全公演終了後：完走表示
+      if (now >= FINAL_END) {
+        labelEl.textContent = 'THE VOYAGE IS COMPLETE';
+        el.textContent = '';
+        unitEl.textContent = '';
+        setNextPort('全20港、寄港。ありがとうございました。');
+        return;
+      }
+
+      // ② ツアー中：旅路 N 日目 ＋ 次の寄港地
+      const dayN = Math.floor((now - DEPART) / DAY_MS) + 1;
+      labelEl.textContent = '旅路';
+      el.textContent = String(dayN);
+      unitEl.textContent = '日目';
+
+      if (!ports.length) return;
+      const today = now.getFullYear() * 10000 + (now.getMonth() + 1) * 100 + now.getDate();
+      const next = ports.find(p => p.num >= today);
+      if (!next) return;
+      const isFinal = next === ports[ports.length - 1];
+      const portLabel = isFinal ? 'FINAL PORT' : 'NEXT PORT';
+      if (next.num === today) {
+        setNextPort(`<span class="countdown__port-label">${portLabel}</span> 本日寄港：${next.city}`);
+      } else {
+        const days = Math.round((next.date - now) / DAY_MS + 0.5);
+        setNextPort(`<span class="countdown__port-label">${portLabel}</span> ${next.city} まで ${days} DAYS`);
+      }
     }
+
+    // shows.json から寄港地リストを取得
+    fetch('shows.json')
+      .then(res => res.json())
+      .then(shows => {
+        ports = shows.map(s => {
+          const d = new Date(s.date + 'T00:00:00+09:00');
+          return {
+            date: d,
+            num: d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate(),
+            city: s.city,
+          };
+        }).sort((a, b) => a.date - b.date);
+        update();
+      })
+      .catch(() => {});
 
     update();
     setInterval(update, 60000);

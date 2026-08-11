@@ -4384,3 +4384,31 @@ a.guest-card__name:hover {
   margin-left: 0.4em;
   letter-spacing: 0.02em;
 }
+
+/* 旅路カウンター — 次の寄港地表示 */
+.hero__countdown {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.countdown__next-port {
+  flex-basis: 100%;
+  text-align: center;
+  font-family: var(--font-body-ja);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+  margin-top: 2px;
+}
+
+.countdown__port-label {
+  font-family: var(--font-heading-en);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  color: var(--color-accent);
+  margin-right: 0.6em;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+}
