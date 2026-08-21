@@ -3744,6 +3744,16 @@ a.guest-card__name:hover {
   }
 }
 
+/* ARK-LOG バナー（SCHEDULE内・EPバナーのスタイル流用） */
+.app-banner {
+  /* CTAピルがtransformで下に約20pxはみ出すため、下余白で確保（アコーディオンのoverflow切れ対策） */
+  margin: clamp(28px, 5vw, 44px) auto 44px;
+}
+
+.app-banner__bg {
+  background-image: url('img/arklog_banner.jpg');
+}
+
 /* ============================================
    PC広幅化 — 1100px以上でコンテンツ幅を拡張
    ============================================ */
