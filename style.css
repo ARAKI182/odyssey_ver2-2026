@@ -3744,6 +3744,11 @@ a.guest-card__name:hover {
   }
 }
 
+/* アンカー着地時に見出しが上端に張り付かないよう余白を確保 */
+[id] {
+  scroll-margin-top: 24px;
+}
+
 /* ARK-LOG バナー（SCHEDULE内・EPバナーのスタイル流用） */
 .app-banner {
   /* CTAピルがtransformで下に約20pxはみ出すため、下余白で確保（アコーディオンのoverflow切れ対策） */

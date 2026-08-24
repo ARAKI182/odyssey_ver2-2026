@@ -277,6 +277,30 @@
   /* -----------------------------------------
      2b. SCHEDULE DETAIL MODAL
      ----------------------------------------- */
+  /* -----------------------------------------
+     ページ内アンカーへの誘導（モーダル内リンク共用）
+     折りたたまれたセクション・アコーディオンを開いてからスクロールする
+     ----------------------------------------- */
+  function navigateToAnchor(id) {
+    const target = document.getElementById(id);
+    if (!target) return;
+    const section = target.closest('.section');
+    const toggle = section ? section.querySelector('.section__toggle') : null;
+    if (toggle && toggle.getAttribute('aria-expanded') !== 'true') {
+      toggle.setAttribute('aria-expanded', 'true');
+      const collapse = document.getElementById(toggle.getAttribute('aria-controls'));
+      if (collapse) collapse.classList.remove('is-collapsed');
+    }
+    // ターゲット自体がアコーディオンなら中身も開く
+    const trigger = target.classList.contains('accordion') ? target.querySelector('.accordion__trigger') : null;
+    if (trigger && trigger.getAttribute('aria-expanded') !== 'true') trigger.click();
+    // スムーススクロールはアコーディオン展開や画像読み込みのレイアウト変動で
+    // 中断されることがあるため、即時ジャンプ＋落ち着いた後の再スナップで確実に合わせる
+    const snap = () => target.scrollIntoView({ behavior: 'auto', block: 'start' });
+    setTimeout(snap, 150);
+    setTimeout(snap, 900);
+  }
+
   function initScheduleModal() {
     const modal = document.getElementById('scheduleModal');
     const closeBtn = document.getElementById('scheduleModalClose');
@@ -329,6 +353,7 @@
           <dt>START </dt><dd>${show.start || 'TBA'}</dd>
         </dl>
         ${mapHTML}
+        <a href="#butsuhan-times" class="schedule-detail__map-link">物販情報はこちら</a>
         ${guestsHTML}
         ${bandHTML}
         ${contactHTML}
@@ -359,6 +384,15 @@
     if (backdrop) backdrop.addEventListener('click', close);
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape' && modal.classList.contains('is-open')) close();
+    });
+
+    // モーダル本文内のアンカーリンク: モーダルを閉じてから該当箇所へ
+    content.addEventListener('click', e => {
+      const link = e.target.closest('a[href^="#"]');
+      if (!link) return;
+      e.preventDefault();
+      close();
+      navigateToAnchor(link.getAttribute('href').slice(1));
     });
   }
 
@@ -613,18 +647,8 @@
       const link = e.target.closest('a[href^="#"]');
       if (!link) return;
       e.preventDefault();
-      const target = document.getElementById(link.getAttribute('href').slice(1));
       close();
-      if (!target) return;
-      // 折りたたまれたセクション内なら開いてからスクロール
-      const section = target.closest('.section');
-      const toggle = section ? section.querySelector('.section__toggle') : null;
-      if (toggle && toggle.getAttribute('aria-expanded') !== 'true') {
-        toggle.setAttribute('aria-expanded', 'true');
-        const collapse = document.getElementById(toggle.getAttribute('aria-controls'));
-        if (collapse) collapse.classList.remove('is-collapsed');
-      }
-      setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 150);
+      navigateToAnchor(link.getAttribute('href').slice(1));
     });
   }
 
@@ -1202,6 +1226,43 @@
   /* -----------------------------------------
      INIT
      ----------------------------------------- */
+  /* -----------------------------------------
+     ハッシュ付きURL着地位置の補正
+     ブラウザはJSのリスト生成や画像読み込みの前にアンカーへジャンプするため、
+     その後のレイアウト変動でターゲットが下にずれる。全読み込み後にスクロールし直す。
+     ----------------------------------------- */
+  // ハッシュ付きで開いた場合、ブラウザのスクロール位置復元がアンカー位置を上書きするのを防ぐ
+  if (location.hash && 'scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+
+  function initHashScroll() {
+    if (!location.hash) return;
+    const target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    if (!target) return;
+
+    // 読み込み直後はアコーディオン初期化や画像で数秒レイアウトが動き続けるため、
+    // 落ち着くまでターゲットに追従し続ける。ユーザーが操作したら即解除。
+    const snap = () => target.scrollIntoView();
+    let ro = null;
+    const stop = () => {
+      if (ro) { ro.disconnect(); ro = null; }
+      ['wheel', 'touchstart', 'keydown'].forEach(ev => window.removeEventListener(ev, stop));
+    };
+    const start = () => {
+      snap();
+      ro = new ResizeObserver(snap);
+      ro.observe(document.body);
+      ['wheel', 'touchstart', 'keydown'].forEach(ev => window.addEventListener(ev, stop, { passive: true }));
+      setTimeout(() => { if (ro) { snap(); } stop(); }, 3000);
+    };
+    if (document.readyState === 'complete') {
+      start();
+    } else {
+      window.addEventListener('load', start, { once: true });
+    }
+  }
+
   document.addEventListener('DOMContentLoaded', async () => {
     // Core
     initCountdown();
@@ -1224,6 +1285,8 @@
     // Animations
     initFadeObserver();
     initGSAP();
+
+    initHashScroll();
   });
 
 })();
