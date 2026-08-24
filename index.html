@@ -593,22 +593,64 @@
           <em class="seiriken__lead-em">開場前の先行販売は、物販整理券をお持ちの方限定です。</em>
         </p>
 
-        <div class="seiriken-target">
-          <span class="seiriken-target__label">今回の受付対象</span>
-          <span class="seiriken-target__value">8月・9月公演<small>（8/10 青森 〜 9/22 富山）</small></span>
-          <span class="seiriken-target__note">10月以降の公演分は、別途改めて受付を行います。</span>
+        <!-- 8・9月公演分（9/22 富山 終了後に自動で非表示） -->
+        <div class="seiriken-round" data-hide-at="2026-09-23T00:00:00+09:00">
+          <div class="seiriken-target">
+            <span class="seiriken-target__label">受付対象</span>
+            <span class="seiriken-target__value">8月・9月公演<small>（8/10 青森 〜 9/22 富山）</small></span>
+          </div>
+
+          <div class="seiriken-schedule">
+            <div class="seiriken-phase">
+              <span class="seiriken-phase__label">先着受付</span>
+              <span class="seiriken-phase__period">7/31（金）19:00 〜 各公演当日</span>
+              <span class="seiriken-phase__note">※物販整理券在庫が余れば実施／定員数：抽選受付のあまりを充当</span>
+            </div>
+          </div>
         </div>
 
-        <div class="seiriken-schedule">
-          <div class="seiriken-phase">
-            <span class="seiriken-phase__label">抽選受付</span>
-            <span class="seiriken-phase__period">7/15（水）19:00 〜 7/22（水）23:59</span>
-            <span class="seiriken-phase__note">当落発表：7/24（金）19:00</span>
+        <!-- 10・11月公演分（11/15 鹿児島 終了後に自動で非表示） -->
+        <div class="seiriken-round" data-hide-at="2026-11-16T00:00:00+09:00">
+          <div class="seiriken-target">
+            <span class="seiriken-target__label">受付対象</span>
+            <span class="seiriken-target__value">10月・11月公演<small>（10/4 横浜 〜 11/15 鹿児島）</small></span>
+            <span class="seiriken-target__note" data-hide-at="2026-10-24T19:00:00+09:00">12月公演分は、別途改めて受付を行います。</span>
           </div>
-          <div class="seiriken-phase">
-            <span class="seiriken-phase__label">先着受付</span>
-            <span class="seiriken-phase__period">7/31（金）19:00 〜 各公演当日</span>
-            <span class="seiriken-phase__note">※物販整理券在庫が余れば実施／定員数：抽選受付のあまりを充当</span>
+
+          <div class="seiriken-schedule">
+            <!-- 当落発表（9/11）翌日に自動で非表示 -->
+            <div class="seiriken-phase" data-hide-at="2026-09-12T00:00:00+09:00">
+              <span class="seiriken-phase__label">抽選受付</span>
+              <span class="seiriken-phase__period">8/25（火）20:00 〜 9/5（土）23:59</span>
+              <span class="seiriken-phase__note">当落発表：9/11（金）20:00</span>
+            </div>
+            <div class="seiriken-phase">
+              <span class="seiriken-phase__label">先着受付</span>
+              <span class="seiriken-phase__period">9/18（金）20:00 〜 各公演当日</span>
+              <span class="seiriken-phase__note">※物販整理券在庫が余れば実施／定員数：抽選受付のあまりを充当</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 12月公演分（10/24 19:00 自動表示） -->
+        <div class="seiriken-round" data-reveal="2026-10-24T19:00:00+09:00" hidden>
+          <div class="seiriken-target">
+            <span class="seiriken-target__label">受付対象</span>
+            <span class="seiriken-target__value">12月公演<small>（12/6 札幌 〜 12/26 横浜）</small></span>
+          </div>
+
+          <div class="seiriken-schedule">
+            <!-- 当落発表（11/11）翌日に自動で非表示 -->
+            <div class="seiriken-phase" data-hide-at="2026-11-12T00:00:00+09:00">
+              <span class="seiriken-phase__label">抽選受付</span>
+              <span class="seiriken-phase__period">10/25（日）20:00 〜 11/5（木）23:59</span>
+              <span class="seiriken-phase__note">当落発表：11/11（水）20:00</span>
+            </div>
+            <div class="seiriken-phase">
+              <span class="seiriken-phase__label">先着受付</span>
+              <span class="seiriken-phase__period">11/18（水）20:00 〜 各公演当日</span>
+              <span class="seiriken-phase__note">※物販整理券在庫が余れば実施／定員数：抽選受付のあまりを充当</span>
+            </div>
           </div>
         </div>
 
@@ -648,6 +690,50 @@
                 <li>整理券の譲渡・転売は禁止です</li>
                 <li>本人確認をさせていただく場合もございます。身分証を必ずご持参ください</li>
                 <li>スマートフォン／タブレット端末およびLINEアプリをお持ちでない方は整理券のお申し込みをいただけません。予めご了承ください</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion accordion--notes accordion--rules" style="margin-top: 1rem;">
+          <button class="accordion__trigger accordion__trigger--notes" aria-expanded="false">
+            <span>先行物販の実施時間</span>
+            <span class="accordion__icon"></span>
+          </button>
+          <div class="accordion__content">
+            <div class="accordion__inner">
+              <p class="butsuhan-times__note">
+                開場前の先行物販は、<strong>物販整理券をお持ちの方限定</strong>です。<br>
+                終了予定時刻以降は<strong>フリー販売</strong>に切り替わります（整理券がなくてもご購入いただけます）。<br>
+                <small>※時刻は目安です。当日の状況により前後する場合があります。</small>
+              </p>
+
+              <h4 class="butsuhan-times__phase">PHASE 1 - LIVEHOUSE TOUR</h4>
+              <ul class="butsuhan-times__list">
+                <li class="butsuhan-times__row"><span class="butsuhan-times__date">8/10（月）</span><span class="butsuhan-times__venue">青森Quarter</span><span class="butsuhan-times__time">12:00 〜 14:00</span></li>
+                <li class="butsuhan-times__row"><span class="butsuhan-times__date">8/16<span class="butsuhan-times__dow--sun">（日）</span></span><span class="butsuhan-times__venue">秋田Club SWINDLE</span><span class="butsuhan-times__time">13:30 〜 15:30</span></li>
+                <li class="butsuhan-times__row"><span class="butsuhan-times__date">8/23<span class="butsuhan-times__dow--sun">（日）</span></span><span class="butsuhan-times__venue">仙台Rensa</span><span class="butsuhan-times__time">13:30 〜 15:30</span></li>
+                <li class="butsuhan-times__row"><span class="butsuhan-times__date">8/29<span class="butsuhan-times__dow--sat">（土）</span></span><span class="butsuhan-times__venue">新潟LOTS</span><span class="butsuhan-times__time">12:30 〜 15:45</span></li>
+                <li class="butsuhan-times__row"><span class="butsuhan-times__date">9/6<span class="butsuhan-times__dow--sun">（日）</span></span><span class="butsuhan-times__venue">水戸ライトハウス</span><span class="butsuhan-times__time">13:00 〜 16:00</span></li>
+                <li class="butsuhan-times__row"><span class="butsuhan-times__date">9/13<span class="butsuhan-times__dow--sun">（日）</span></span><span class="butsuhan-times__venue">HEAVEN'S ROCK 熊谷 VJ-1</span><span class="butsuhan-times__time">13:00 〜 16:00</span></li>
+                <li class="butsuhan-times__row"><span class="butsuhan-times__date">9/20<span class="butsuhan-times__dow--sun">（日）</span></span><span class="butsuhan-times__venue">金沢エイトホール</span><span class="butsuhan-times__time">12:30 〜 15:30</span></li>
+                <li class="butsuhan-times__row"><span class="butsuhan-times__date">9/22<span class="butsuhan-times__dow--holiday">（火・祝）</span></span><span class="butsuhan-times__venue">富山SOUL POWER</span><span class="butsuhan-times__time">12:30 〜 15:30</span></li>
+                <li class="butsuhan-times__row"><span class="butsuhan-times__date">10/4<span class="butsuhan-times__dow--sun">（日）</span></span><span class="butsuhan-times__venue">横浜Bayhall</span><span class="butsuhan-times__time">12:00 〜 15:15</span></li>
+                <li class="butsuhan-times__row"><span class="butsuhan-times__date">10/10<span class="butsuhan-times__dow--sat">（土）</span></span><span class="butsuhan-times__venue">LiveHouse浜松窓枠</span><span class="butsuhan-times__time">13:00 〜 16:00</span></li>
+                <li class="butsuhan-times__row"><span class="butsuhan-times__date">10/17<span class="butsuhan-times__dow--sat">（土）</span></span><span class="butsuhan-times__venue">BIGCAT</span><span class="butsuhan-times__time">12:00 〜 15:00</span></li>
+                <li class="butsuhan-times__row"><span class="butsuhan-times__date">10/24<span class="butsuhan-times__dow--sat">（土）</span></span><span class="butsuhan-times__venue">NAGOYA CLUB QUATTRO</span><span class="butsuhan-times__time">12:00 〜 15:00</span></li>
+                <li class="butsuhan-times__row"><span class="butsuhan-times__date">10/31<span class="butsuhan-times__dow--sat">（土）</span></span><span class="butsuhan-times__venue">神戸VARIT.</span><span class="butsuhan-times__time">12:30 〜 15:30</span></li>
+                <li class="butsuhan-times__row"><span class="butsuhan-times__date">11/7<span class="butsuhan-times__dow--sat">（土）</span></span><span class="butsuhan-times__venue">広島LIVE VANQUISH</span><span class="butsuhan-times__time">12:30 〜 15:30</span></li>
+                <li class="butsuhan-times__row"><span class="butsuhan-times__date">11/15<span class="butsuhan-times__dow--sun">（日）</span></span><span class="butsuhan-times__venue">鹿児島CAPARVO HALL</span><span class="butsuhan-times__time">13:30 〜 16:30</span></li>
+              </ul>
+
+              <h4 class="butsuhan-times__phase">PHASE 2 - ZEPP TOUR</h4>
+              <ul class="butsuhan-times__list">
+                <li class="butsuhan-times__row"><span class="butsuhan-times__date">12/6<span class="butsuhan-times__dow--sun">（日）</span></span><span class="butsuhan-times__venue">Zepp Sapporo</span><span class="butsuhan-times__time">12:00 〜 15:00</span></li>
+                <li class="butsuhan-times__row"><span class="butsuhan-times__date">12/12<span class="butsuhan-times__dow--sat">（土）</span></span><span class="butsuhan-times__venue">Zepp Fukuoka</span><span class="butsuhan-times__time">13:00 〜 16:00</span></li>
+                <li class="butsuhan-times__row"><span class="butsuhan-times__date">12/20<span class="butsuhan-times__dow--sun">（日）</span></span><span class="butsuhan-times__venue">Zepp Nagoya</span><span class="butsuhan-times__time">12:00 〜 15:00</span></li>
+                <li class="butsuhan-times__row"><span class="butsuhan-times__date">12/24（木）</span><span class="butsuhan-times__venue">Zepp Osaka Bayside</span><span class="butsuhan-times__time">13:30 〜 16:30</span></li>
+                <li class="butsuhan-times__row"><span class="butsuhan-times__date">12/26<span class="butsuhan-times__dow--sat">（土）</span></span><span class="butsuhan-times__venue">KT Zepp Yokohama</span><span class="butsuhan-times__time">12:30 〜 15:30</span></li>
               </ul>
             </div>
           </div>

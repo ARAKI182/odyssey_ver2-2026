@@ -4168,6 +4168,25 @@ a.guest-card__name:hover {
   color: var(--color-sub-text);
 }
 
+/* 受付対象カード → スケジュールカードをつなぐ矢印 */
+.seiriken-round .seiriken-target {
+  position: relative;
+  margin-bottom: 1.7rem;
+}
+
+.seiriken-round .seiriken-target::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -1.15rem;
+  width: 9px;
+  height: 9px;
+  transform: translateX(-50%) rotate(45deg);
+  border-right: 2px solid var(--color-accent);
+  border-bottom: 2px solid var(--color-accent);
+  opacity: 0.85;
+}
+
 .seiriken-schedule {
   display: flex;
   flex-direction: column;
@@ -4208,6 +4227,83 @@ a.guest-card__name:hover {
 .seiriken-phase__note {
   font-size: 0.72rem;
   color: var(--color-sub-text);
+}
+
+/* 先行物販の実施時間（アコーディオン内） */
+.butsuhan-times__note {
+  font-size: 0.8rem;
+  line-height: 1.9;
+  text-align: center;
+  margin: 0 0 1rem;
+}
+
+.butsuhan-times__note small {
+  font-size: 0.72rem;
+  color: var(--color-sub-text);
+}
+
+.butsuhan-times__phase {
+  font-family: var(--font-heading-en);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--color-accent);
+  text-align: center;
+  margin: 1.2rem 0 0.5rem;
+}
+
+.butsuhan-times__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.butsuhan-times__row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6em;
+  padding: 0.5em 0.2em;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+  font-size: 0.82rem;
+  text-align: left;
+}
+
+.butsuhan-times__date {
+  flex: 0 0 auto;
+  min-width: 6em;
+  white-space: nowrap;
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.butsuhan-times__dow--sat { color: #6ea8d9; }
+.butsuhan-times__dow--sun { color: #e06060; }
+.butsuhan-times__dow--holiday { color: #e8a040; }
+
+.butsuhan-times__venue {
+  flex: 1;
+  color: #ffffff;
+}
+
+.butsuhan-times__time {
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .butsuhan-times__row {
+    flex-wrap: wrap;
+    row-gap: 2px;
+  }
+  .butsuhan-times__date {
+    min-width: 0;
+  }
+  .butsuhan-times__time {
+    flex-basis: 100%;
+    text-align: right;
+    font-size: 0.8rem;
+  }
 }
 
 .seiriken__prereq {
