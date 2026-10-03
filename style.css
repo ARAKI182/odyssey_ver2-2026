@@ -3583,8 +3583,7 @@ a.guest-card__name:hover {
   border-radius: 6px;
 }
 
-.ep-banner__bg,
-.ep-banner__overlay {
+.ep-banner__bg {
   border-radius: 6px;
 }
 
@@ -3598,18 +3597,6 @@ a.guest-card__name:hover {
 
 .ep-banner__link:hover .ep-banner__bg {
   transform: scale(1.04);
-}
-
-.ep-banner__overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(8, 6, 4, 0.55) 0%,
-    rgba(8, 6, 4, 0.35) 50%,
-    rgba(8, 6, 4, 0.7) 100%
-  );
-  z-index: 1;
 }
 
 .ep-banner__content {
@@ -3741,6 +3728,38 @@ a.guest-card__name:hover {
 @media (max-width: 600px) {
   .ep-banner__link {
     max-width: 320px;
+  }
+}
+
+/* 12/26 FINAL 生配信バナー（ヒーロー直下・EPバナーのスタイル流用）
+   ヒーローKVと分離するためベタ塗りの帯にする */
+.stream-banner {
+  margin: 0 auto;
+  padding: clamp(40px, 6vw, 64px) 16px clamp(44px, 7vw, 72px);
+  background: #0a0805;
+}
+
+.stream-banner .ep-banner__link {
+  aspect-ratio: 16 / 9;
+  max-width: 480px;
+}
+
+.stream-banner__bg {
+  background-image: url('img/stream_banner.jpg');
+}
+
+/* マルキーCTAを画像に乗らない位置まで下げる */
+.stream-banner .ep-banner__cta {
+  transform: translateY(50px);
+}
+
+.stream-banner .ep-banner__link:hover .ep-banner__cta {
+  transform: translateY(48px);
+}
+
+@media (max-width: 600px) {
+  .stream-banner .ep-banner__link {
+    max-width: 340px;
   }
 }
 

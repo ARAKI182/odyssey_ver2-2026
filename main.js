@@ -345,6 +345,12 @@
         mapHTML = `<a href="${show.map_url}" target="_blank" rel="noopener" class="schedule-detail__map-link">Google Map</a>`;
       }
 
+      // 12/26 FINAL公演の生配信リンク（2026-10-04 20:00 解禁）
+      let streamHTML = '';
+      if (show.final && Date.now() >= new Date('2026-10-04T20:00:00+09:00').getTime()) {
+        streamHTML = '<a href="https://sheeta.jp/live-stream/live/smQe2CQNfuFtkV9ZxNAErvF4" target="_blank" rel="noopener" class="schedule-detail__map-link">生配信はこちら</a>';
+      }
+
       content.innerHTML = `
         <p class="schedule-detail__date">${display} <span class="${dayClass}">${dow}</span></p>
         <p class="schedule-detail__venue">${show.city} / ${show.venue}</p>
@@ -354,6 +360,7 @@
         </dl>
         ${mapHTML}
         <a href="#butsuhan-times" class="schedule-detail__map-link">物販情報はこちら</a>
+        ${streamHTML}
         ${guestsHTML}
         ${bandHTML}
         ${contactHTML}
